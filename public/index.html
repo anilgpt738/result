@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Document Verification Portal | Usha Institute of Computer Education (ATC: IN/UP/MAU/29172)</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Design System -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        /* Dedicated Document Verification Portal Styling (Clean, zero stock media) */
+        .portal-hero {
+            background: linear-gradient(135deg, #0C1533 0%, #1A264F 50%, #2A111A 100%);
+            color: #ffffff;
+            padding: 70px 0 65px 0;
+            position: relative;
+            border-bottom: 3px solid #C9A45C;
+        }
+
+        .portal-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 164, 92, 0.15);
+            border: 1px solid #C9A45C;
+            color: #E6C875;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+
+        .portal-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(34px, 4.5vw, 52px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .portal-hero-title span {
+            color: #E6C875;
+        }
+
+        .portal-hero-sub {
+            font-size: 17px;
+            color: #D1D5DB;
+            max-width: 760px;
+            margin: 0 auto 32px auto;
+            line-height: 1.6;
+        }
+
+        /* Unified Fast Lookup Card */
+        .lookup-card-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            max-width: 860px;
+            margin: 0 auto;
+            border: 1px solid rgba(201, 164, 92, 0.4);
+        }
+
+        [data-theme="dark"] .lookup-card-wrapper {
+            background: #1B1B1F;
+            border-color: #33323D;
+        }
+
+        .service-pill-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .service-pill-btn {
+            background: #F5F3FF;
+            color: #110C2D;
+            border: 1px solid #DCDBE4;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        [data-theme="dark"] .service-pill-btn {
+            background: #25242C;
+            color: #E2E8F0;
+            border-color: #3D3B47;
+        }
+
+        .service-pill-btn.active {
+            background: #890C25;
+            color: #ffffff;
+            border-color: #890C25;
+            box-shadow: 0 4px 12px rgba(137, 12, 37, 0.3);
+        }
+
+        /* 3 Service Cards Grid */
+        .service-portal-card {
+            background: #ffffff;
+            border: 1px solid #DCDBE4;
+            border-radius: 10px;
+            padding: 30px 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            position: relative;
+            box-shadow: 0 4px 14px rgba(12, 21, 51, 0.04);
+        }
+
+        [data-theme="dark"] .service-portal-card {
+            background: #1B1B1F;
+            border-color: #33323D;
+        }
+
+        .service-portal-card:hover {
+            transform: translateY(-5px);
+            border-color: #890C25;
+            box-shadow: 0 12px 28px rgba(137, 12, 37, 0.12);
+        }
+
+        .service-icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .icon-cert {
+            background: rgba(201, 164, 92, 0.15);
+            color: #A3792C;
+            border: 1px solid rgba(201, 164, 92, 0.3);
+        }
+
+        .icon-marks {
+            background: rgba(137, 12, 37, 0.1);
+            color: #890C25;
+            border: 1px solid rgba(137, 12, 37, 0.25);
+        }
+
+        .icon-admit {
+            background: rgba(12, 21, 51, 0.1);
+            color: #0C1533;
+            border: 1px solid rgba(12, 21, 51, 0.25);
+        }
+
+        [data-theme="dark"] .icon-admit {
+            background: rgba(255, 255, 255, 0.1);
+            color: #93C5FD;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #110C2D;
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .service-card-title {
+            color: #FFFFFF;
+        }
+
+        .service-card-sub {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .service-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+
+        .service-feature-list li {
+            font-size: 13.5px;
+            color: #4B5563;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        [data-theme="dark"] .service-feature-list li {
+            color: #9CA3AF;
+        }
+
+        .service-feature-list li i {
+            color: #16A34A;
+            margin-top: 3px;
+        }
+
+        /* Security Feature Box */
+        .security-banner {
+            background: #F5F3FF;
+            border-radius: 8px;
+            border: 1px solid #DCDBE4;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        [data-theme="dark"] .security-banner {
+            background: #1B1B1F;
+            border-color: #33323D;
+        }
+
+        .security-badge-icon {
+            font-size: 32px;
+            color: #890C25;
+            margin-bottom: 12px;
+        }
+
+        .verification-ticker {
+            background: #0C1533;
+            color: #E2E8F0;
+            padding: 10px 0;
+            font-size: 13.5px;
+            border-bottom: 1px solid rgba(201, 164, 92, 0.3);
+        }
+
+        .sample-pill-link {
+            font-size: 12px;
+            color: #890C25;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Site Header Mount (Master Acceptance Test 9.1 Compliant) -->
+    <div id="siteHeaderMount"></div>
+
+    <!-- 1. OFFICIAL INSTITUTIONAL TICKER -->
+    <div class="verification-ticker">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <span class="badge bg-danger me-2"><i class="fa-solid fa-shield-halved me-1"></i> VERIFY ONLINE</span>
+                <span class="fw-semibold">Official Online Document Verification & Examination Registry — Center Code: IN/UP/MAU/29172</span>
+            </div>
+            <div class="small d-none d-md-block text-warning">
+                <i class="fa-solid fa-award me-1"></i> ISO 9001:2015 Certified | Skill India Norms
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. CORE PORTAL HERO SECTION (FOCUSED 100% ON VERIFICATION) -->
+    <section class="portal-hero">
+        <div class="container text-center">
+            
+            <div class="portal-hero-badge">
+                <i class="fa-solid fa-graduation-cap"></i> USHA INSTITUTE OF COMPUTER EDUCATION
+            </div>
+
+            <h1 class="portal-hero-title">
+                Student Document Verification & <span>Examination Portal</span>
+            </h1>
+            
+            <p class="portal-hero-sub">
+                Official centralized portal for instant digital verification and high-resolution document download: 
+                <strong>Completion Certificates</strong>, <strong>Semester Marksheets</strong>, and <strong>Examination Admit Cards</strong>.
+            </p>
+
+            <!-- UNIFIED FAST LOOKUP COMPONENT -->
+            <div class="lookup-card-wrapper">
+                
+                <!-- Service Selector Pills -->
+                <div class="service-pill-group">
+                    <button type="button" class="service-pill-btn active" id="btnServiceCert" onclick="selectService('certificate')">
+                        <i class="fa-solid fa-award"></i> 1. Certificate Verification
+                    </button>
+                    <button type="button" class="service-pill-btn" id="btnServiceResult" onclick="selectService('result')">
+                        <i class="fa-solid fa-square-poll-vertical"></i> 2. Statement of Marks
+                    </button>
+                    <button type="button" class="service-pill-btn" id="btnServiceAdmit" onclick="selectService('admit-card')">
+                        <i class="fa-solid fa-id-card-clip"></i> 3. Download Admit Card
+                    </button>
+                </div>
+
+                <!-- Unified Input Bar -->
+                <form id="unifiedSearchForm" onsubmit="handleUnifiedSearch(event)">
+                    <div class="input-group input-group-lg mb-2">
+                        <span class="input-group-text bg-white border-end-0 text-muted" id="searchIconMount">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" 
+                               class="form-control border-start-0 border-end-0 py-3" 
+                               id="unifiedQueryInput" 
+                               placeholder="Enter Roll No / Enrollment ID (e.g. UIS2026001)"
+                               required>
+                        <button type="submit" class="btn btn-primary px-4 fw-bold" id="searchSubmitBtn">
+                            <i class="fa-solid fa-shield-check me-1"></i> Verify & View
+                        </button>
+                    </div>
+                </form>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-2 px-1 text-muted small">
+                    <div class="text-start">
+                        <i class="fa-solid fa-lock text-success me-1"></i>
+                        <strong>Secure Registry:</strong> 24x7 QR Encrypted Verification
+                    </div>
+                    <div>
+                        Try Sample ID: 
+                        <span class="sample-pill-link" onclick="fillSample('UIS2026001')">UIS2026001</span> | 
+                        <span class="sample-pill-link" onclick="fillSample('202536924646')">202536924646</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. THREE DEDICATED VERIFICATION & DOWNLOAD SERVICE CARDS -->
+    <section class="py-5">
+        <div class="container">
+            
+            <div class="text-center mb-5">
+                <span class="badge bg-secondary px-3 py-2 rounded-pill fw-bold text-uppercase mb-2">Authorized Student Services</span>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700;">
+                    Select Verification & Download Service
+                </h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">
+                    Enter your enrollment credentials below or click the direct portal to view and print your authentic institution documents.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                
+                <!-- CARD 1: CERTIFICATE -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-portal-card">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="service-icon-box icon-cert">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <span class="badge bg-warning text-dark fw-bold">Landscape A4</span>
+                        </div>
+
+                        <h3 class="service-card-title">Certificate of Completion</h3>
+                        <div class="service-card-sub">प्रमाणपत्र सत्यापन एवं डाउनलोड</div>
+
+                        <ul class="service-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Standard 1580px × 1100px Landscape Canvas</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Encrypted QR Code for Instant Authentication</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Issued under Skill India & TBF Guidelines</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Valid for Employment & Higher Education</li>
+                        </ul>
+
+                        <div class="mt-auto">
+                            <form onsubmit="handleCardSearch(event, '/certificate', 'certCardInput')" class="mb-2">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="certCardInput" placeholder="Certificate / Enrollment No." required>
+                                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                                </div>
+                            </form>
+                            <a href="/certificate" class="btn btn-primary w-100 py-2 fw-semibold">
+                                <i class="fa-solid fa-shield-check me-1"></i> Open Certificate Portal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: RESULT SHEET / MARKSHEET -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-portal-card">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="service-icon-box icon-marks">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span class="badge bg-danger fw-bold">Portrait A4</span>
+                        </div>
+
+                        <h3 class="service-card-title">Statement of Marks</h3>
+                        <div class="service-card-sub">अंकपत्र एवं परीक्षा परिणाम सत्यापन</div>
+
+                        <ul class="service-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Standard 720px × 1041px Portrait Canvas</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Complete Subject-wise Marks & Theory Breakdown</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Exact Half-Up Percentage & Grade Computation</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Official S.No Register & Date of Issue</li>
+                        </ul>
+
+                        <div class="mt-auto">
+                            <form onsubmit="handleCardSearch(event, '/result', 'resultCardInput')" class="mb-2">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="resultCardInput" placeholder="Roll No / Registration No." required>
+                                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                                </div>
+                            </form>
+                            <a href="/result" class="btn btn-primary w-100 py-2 fw-semibold" style="background: #890C25; border-color: #890C25;">
+                                <i class="fa-solid fa-file-lines me-1"></i> Open Result Portal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: ADMIT CARD -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-portal-card">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="service-icon-box icon-admit">
+                                <i class="fa-solid fa-id-card-clip"></i>
+                            </div>
+                            <span class="badge bg-primary fw-bold">Hall Ticket</span>
+                        </div>
+
+                        <h3 class="service-card-title">Examination Admit Card</h3>
+                        <div class="service-card-sub">प्रवेश पत्र डाउनलोड एवं सत्यापन</div>
+
+                        <ul class="service-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Standard 850px × 1100px Portrait Hall Ticket</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Candidate Photo, Signature & Examination Venue</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Subject Timetable & Reporting Instructions</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Minimum 75% Attendance Verification Checked</li>
+                        </ul>
+
+                        <div class="mt-auto">
+                            <form onsubmit="handleCardSearch(event, '/admit-card', 'admitCardInput')" class="mb-2">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="admitCardInput" placeholder="Roll No / Application No." required>
+                                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                                </div>
+                            </form>
+                            <a href="/admit-card" class="btn btn-primary w-100 py-2 fw-semibold" style="background: #0C1533; border-color: #0C1533;">
+                                <i class="fa-solid fa-ticket me-1"></i> Open Admit Card Portal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. SECURITY & ANTI-TAMPERING GUARANTEES -->
+    <section class="py-5 bg-light border-top border-bottom">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-2">Digital Trust & Security</span>
+                <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700;">
+                    Document Authentication Standards
+                </h3>
+                <p class="text-muted mx-auto" style="max-width: 650px;">
+                    All academic records generated by Usha Institute of Computer Education are protected under multi-layer security protocols.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 p-4 border-0 shadow-sm text-center">
+                        <i class="fa-solid fa-qrcode text-danger fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2">Encrypted QR Codes</h5>
+                        <p class="small text-muted mb-0">
+                            Each document embeds a secure 2D QR code linking directly to the institution's verified server database.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 p-4 border-0 shadow-sm text-center">
+                        <i class="fa-solid fa-calculator text-primary fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2">12-Digit Luhn Algorithm</h5>
+                        <p class="small text-muted mb-0">
+                            Enrollment numbers are validated via mathematical check digits, preventing forgery or arbitrary number guessing.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 p-4 border-0 shadow-sm text-center">
+                        <i class="fa-solid fa-stamp text-warning fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2">Registered ATC Authority</h5>
+                        <p class="small text-muted mb-0">
+                            Verified against Center Code IN/UP/MAU/29172 with authorized signatory seals and ISO certifications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 p-4 border-0 shadow-sm text-center">
+                        <i class="fa-solid fa-print text-success fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2">Exact Print Formatting</h5>
+                        <p class="small text-muted mb-0">
+                            Print-ready layouts in pixel-perfect A4 dimensions with zero margin distortion or layout shifts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VERIFICATION HELPDESK & CAMPUS DETAILS -->
+    <section class="py-5">
+        <div class="container">
+            <div class="card border-0 shadow-sm p-4 p-md-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <span class="badge bg-warning text-dark px-3 py-2 fw-bold">ATC: IN/UP/MAU/29172</span>
+                            <span class="text-muted small">Mau, Uttar Pradesh</span>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">
+                            Need Verification Assistance or Duplicate Copy?
+                        </h3>
+                        <p class="text-secondary mb-0">
+                            If you are an employer, educational institution, or government agency requiring manual document confirmation, 
+                            contact our Examination Controller Desk with student enrollment details.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="d-flex flex-column gap-2">
+                            <a href="tel:+917275043143" class="btn btn-outline-secondary py-2">
+                                <i class="fa-solid fa-phone me-1 text-danger"></i> +91-7275043143
+                            </a>
+                            <a href="mailto:ushainstitutepahasa@gmail.com" class="btn btn-outline-secondary py-2">
+                                <i class="fa-solid fa-envelope me-1 text-primary"></i> ushainstitutepahasa@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Site Footer Mount (Master Acceptance Test 9.1 Compliant) -->
+    <div id="siteFooterMount"></div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        let selectedService = 'certificate';
+
+        function selectService(type) {
+            selectedService = type;
+            document.getElementById('btnServiceCert').classList.toggle('active', type === 'certificate');
+            document.getElementById('btnServiceResult').classList.toggle('active', type === 'result');
+            document.getElementById('btnServiceAdmit').classList.toggle('active', type === 'admit-card');
+
+            const input = document.getElementById('unifiedQueryInput');
+            if (type === 'certificate') {
+                input.placeholder = "Enter Certificate No / Enrollment No (e.g. UIS2026001)";
+            } else if (type === 'result') {
+                input.placeholder = "Enter Roll No / Registration No (e.g. UIS2026001)";
+            } else if (type === 'admit-card') {
+                input.placeholder = "Enter Roll No / Application No (e.g. UIS2026001)";
+            }
+        }
+
+        function handleUnifiedSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('unifiedQueryInput').value.trim();
+            if (!query) return;
+
+            if (selectedService === 'certificate') {
+                window.location.href = `/certificate?certNo=${encodeURIComponent(query)}`;
+            } else if (selectedService === 'result') {
+                window.location.href = `/result?rollNo=${encodeURIComponent(query)}`;
+            } else if (selectedService === 'admit-card') {
+                window.location.href = `/admit-card?rollNo=${encodeURIComponent(query)}`;
+            }
+        }
+
+        function handleCardSearch(e, targetPath, inputId) {
+            e.preventDefault();
+            const query = document.getElementById(inputId).value.trim();
+            if (!query) {
+                window.location.href = targetPath;
+                return;
+            }
+            if (targetPath === '/certificate') {
+                window.location.href = `/certificate?certNo=${encodeURIComponent(query)}`;
+            } else if (targetPath === '/result') {
+                window.location.href = `/result?rollNo=${encodeURIComponent(query)}`;
+            } else if (targetPath === '/admit-card') {
+                window.location.href = `/admit-card?rollNo=${encodeURIComponent(query)}`;
+            }
+        }
+
+        function fillSample(id) {
+            const input = document.getElementById('unifiedQueryInput');
+            input.value = id;
+            input.focus();
+        }
+    </script>
+</body>
+</html>

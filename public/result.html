@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Statement of Marks | Usha Institute of Computer Education</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Special+Gothic+Condensed+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+    </style>
+
+    <style type="text/css">
+        * {
+            font-family: "Lora", serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #e2e8f0;
+        }
+
+        /* Scoped Action Toolbar (No-Print) */
+        .marks-toolbar {
+            background-color: #0b1230;
+            border-bottom: 2px solid #c9a45c;
+            padding: 10px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            font-family: sans-serif;
+        }
+        .marks-toolbar * {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .marks-toolbar a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .marks-search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 4px 10px;
+        }
+        .marks-search-input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 260px;
+            color: #0b1230;
+        }
+        .btn-action-gold {
+            background-color: #c9a45c;
+            color: #0b1230;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .btn-action-outline {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.4);
+            font-weight: 600;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .marks-stage {
+            display: flex;
+            justify-content: center;
+            padding: 30px 10px 60px 10px;
+            overflow-x: auto;
+        }
+
+        /* ============================================================
+           EXACT ORIGINAL GOLDEN MARKSHEET CANVAS (720px × 1041px)
+           ============================================================ */
+        .background {
+            width: 720px;
+            min-width: 720px;
+            position: relative;
+            padding: 30px;
+            background-image: url("/assets/backgrounds/marks-bg.jpeg"), url("https://center.pmkvyedu.com/upload/semester_certificate/semester-marksheet_design_9.jpeg");
+            height: 1041px;
+            background-size: cover;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background-color: #ffffff;
+        }
+
+        .col-red {
+            color: #db0c12;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            padding: 0px 15px;
+            margin-top: 5px;
+        }
+
+        .center-name {
+            font-family: "Special Gothic Condensed One", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 35px;
+            color: #29426b;
+        }
+
+        .course {
+            text-align: center;
+            font-weight: 500;
+            color: white;
+            margin-top: 158px;
+            position: absolute;
+            width: 100%;
+        }
+
+        .address {
+            font-size: 7px;
+            margin-left: 336px;
+            margin-right: 57px;
+            margin-top: -110px;
+            font-weight: 700;
+        }
+
+        .stamp_wrapper:after {
+            content: "Authorised Signatory";
+            display: block;
+            text-align: center;
+            font-style: italic;
+            position: absolute;
+            width: 192px;
+            opacity: .7;
+            right: -15px;
+            top: 46px;
+            font-weight: 800;
+        }
+
+        .website-address {
+            position: absolute;
+            bottom: 50px;
+            width: 79%;
+            text-align: center;
+            padding: 0px 50px;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .marks-stage {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .background {
+                box-shadow: none !important;
+                margin: 0 auto !important;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            @page {
+                size: portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP ACTION TOOLBAR (NO-PRINT) -->
+    <header class="marks-toolbar no-print">
+        <div style="display:flex; align-items:center; gap:16px;">
+            <a href="/" style="font-weight:800; font-size:16px; color:#c9a45c; letter-spacing:1px;">
+                <i class="fa-solid fa-graduation-cap" style="margin-right:6px;"></i> USHA INSTITUTE
+            </a>
+            <span style="font-size:12px; color:#94a3b8;" class="d-none d-md-inline">Statement of Marks (ATC: IN/UP/MAU/29172)</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <a href="/" class="btn-action-outline"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="marks-search-box">
+                <i class="fa-solid fa-magnifying-glass" style="font-size:12px; color:#64748b;"></i>
+                <input type="text" id="searchInput" class="marks-search-input" placeholder="Roll No / Registration No..." value="" onkeydown="if(event.key==='Enter') searchMarksheet()">
+                <button type="button" class="btn-action-gold" style="padding:4px 10px; font-size:12px;" onclick="searchMarksheet()">Search</button>
+            </div>
+
+            <button type="button" class="btn-action-gold" onclick="window.print()" id="btnPrintToolbar" style="display:none;">
+                <i class="fa-solid fa-print"></i> Print Marksheet
+            </button>
+            <a href="/certificate" id="lnkCertificate" class="btn-action-outline">
+                <i class="fa-solid fa-award"></i> Certificate
+            </a>
+            <a href="/admit-card" class="btn-action-outline">
+                <i class="fa-solid fa-id-card-clip"></i> Admit Card
+            </a>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION BANNER (NO-PRINT) -->
+    <div id="statusAlert" class="no-print" style="display:none; max-width:720px; margin:15px auto -15px auto; padding:10px 18px; border-radius:6px; font-family:sans-serif; font-size:13px; font-weight:600; text-align:center;"></div>
+
+    <!-- MAIN STAGE -->
+    <main class="marks-stage">
+
+        <!-- 1. EMPTY SEARCH PROMPT (SHOWN BY DEFAULT ON VISIT) -->
+        <div id="emptyPromptCard" class="no-print" style="max-width: 680px; width: 100%; margin: 30px auto; background: #ffffff; border-radius: 16px; padding: 45px 30px; text-align: center; box-shadow: 0 10px 30px rgba(11,18,48,0.1); border: 2px solid #c9a45c; font-family: sans-serif;">
+            <div style="width: 76px; height: 76px; border-radius: 50%; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-file-waveform"></i>
+            </div>
+            <h3 style="color: #0b1230; font-weight: 800; margin-bottom: 8px;">Check Official Statement of Marks</h3>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 25px; max-width: 520px; margin-left: auto; margin-right: auto;">
+                Enter student <strong>Roll Number</strong> or <strong>Registration / Enrollment Number</strong> to search, view, and print the official semester marksheet.
+            </p>
+            <div style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto 20px auto;">
+                <input type="text" id="promptSearchInput" placeholder="e.g. UIS2026001 or ROLL2026001" style="flex: 1; padding: 12px 16px; border-radius: 8px; border: 2px solid #cbd5e1; font-weight: 600; font-size: 14px; outline: none;" onkeydown="if(event.key==='Enter') searchFromPrompt()">
+                <button type="button" class="btn-action-gold" style="padding: 12px 22px; font-size: 14px; white-space: nowrap;" onclick="searchFromPrompt()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; font-size: 12px; color: #64748b;">
+                <span><i class="fa-solid fa-shield-halved text-success me-1"></i> Authorized Center: <strong>IN/UP/MAU/29172</strong></span>
+                <span>•</span>
+                <span><i class="fa-solid fa-graduation-cap text-primary me-1"></i> Academic Session: <strong>2026</strong></span>
+            </div>
+        </div>
+
+        <!-- 2. MAIN MARKSHEET CANVAS (720px × 1041px EXACT - HIDDEN UNTIL SEARCHED) -->
+        <div class="background" id="print" style="display: none;">
+            <div style="position: absolute;top: 75px;width: 67%;padding: 0px 99px;">
+                <div style="display: flex;justify-content:space-between;font-size:11px;font-weight: 700;">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marksheet No. <br>
+                        <span id="mSheetNo">TBF/ADCA/2026/M001</span></span>
+                    <span>S.No:- <span id="mSerialNo">6387</span> </span>
+                </div>
+            </div>
+             <div style="display:block;text-align:center;margin-top:24px;">
+                <img src="/assets/images/logo.png" onerror="this.src='https://center.pmkvyedu.com/upload/logo/1787653813.png'" height="120" width="120" style="margin-top:15px;">
+            </div>
+            <div style="position: relative;left: 42px;width: 88%;height:85%;">
+                <div style="position: absolute;top: 200px;left: 110px;opacity: 0.1;"><img src="/assets/images/logo.png" onerror="this.src='https://center.pmkvyedu.com/upload/logo/1787653813.png'" height="400" width="400"></div>
+                <div class="header">
+                    <div style="flex:1;">
+                        <div style="text-align: center;line-height:38px;" class="center-name">
+                            Usha Institute Of Computer Education                    </div>
+                    </div>
+                </div>
+
+                <div class="" style="top:108px;position: absolute;padding: 0px 21px;text-align:center;width: 94%;">
+
+                    <div style="font-weight:500;font-size:20px;margin:10px 0px;">
+                        <span class="background-color" style="font-family: Arvo, serif">
+                            RESULT SHEET STATEMENT OF MARKS
+                        </span>
+                    </div>
+                    <div>
+                        <table style="width: 100%; border: 2px solid #29426b;border-collapse: collapse;font-size: 13px;min-height:484px;">
+                            <tbody id="mMainTableBody">
+                            <tr>
+                                <td colspan="2" style="border-right: 2px solid #29426b; border-bottom:2px solid #29426b;">
+                                    <div style="display:flex;align-items:center; gap:8px;box-sizing:border-box;">
+                                        <div style="padding: 5px;"><img id="mPhoto" src="/assets/images/default-student.jpeg" onerror="this.src='https://center.pmkvyedu.com/upload/users/19371787653366.jpeg'" style="height:75px; width:70px;border:1.5px solid #29426b">
+                                        </div>
+                                        <div style="flex:1; text-align:left;">
+                                            <strong>
+                                                <span id="mStudentName">OMKAR VISHWAKARMA</span> <br> S/o <br>
+                                                <span id="mFatherName">RAMESH VISHWAKARMA</span> </strong>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td colspan="3" style="text-align: center; border-bottom:2px solid #29426b;">
+                                    <strong style="color:#29426b;">Course Name With Duration</strong> <br>
+                                    <span id="mCourseName">Advance Diploma in Computer Application</span> <br>
+                                    <span id="mDuration">12 Months</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-right:2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    <div style="display: flex;align-items:center; gap:8px;box-sizing:border-box;">
+                                        <div style="border-right: 2px solid #29426b;padding:0px 6px;flex:1; text-align:left;">
+                                            <strong style="color:#29426b;">Session</strong> <br>
+                                            <span id="mSession">2023-2024</span>
+                                        </div>
+                                        <div style="flex:1; text-align:left;">
+                                            <strong style="color:#29426b;">Enrollment No.</strong> <br>
+                                            <span id="mEnrollmentNo">202536924646</span> </div>
+                                    </div>
+
+                                </td>
+                                <td colspan="3" style="text-align: center;border-bottom:2px solid #29426b;">
+                                    <strong style="color:#29426b;">ATC Name With Code</strong> <br>
+                                    Usha institute of computer education <br> (
+                                    IN/UP/MAU/29172)
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <th style="border-right: 2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    S. No.</th>
+                                <th style="border-right: 2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    Subjects Name</th>
+                                <th style="border-right: 2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    Maximum <br> Marks</th>
+                                <th style="border-right: 2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    Marks <br> Obtained</th>
+                                <th style="border-right: 2px solid #29426b;border-bottom:2px solid #29426b;">
+                                    Grade</th>
+                            </tr>
+
+                            <!-- 8 Standard Subject Rows (populated or replaced dynamically) -->
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">1.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">Computer Fundamentals &amp; IT</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">74</td>
+                                <td style="border-right: 2px solid #29426b;">B</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">2.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">MS Office &amp; Office Automation</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">76</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">3.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">MS Excel &amp; Advanced Excel</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">84</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">4.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">Internet &amp; Web Technology</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">83</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">5.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">DBMS</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">78</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">6.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">Computer Networking</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">76</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">7.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">Tally &amp; Accounting</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">84</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            <tr class="subject-row">
+                                <td style="border-right: 2px solid #29426b;">8.</td>
+                                <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">C Programming &amp; Project Work</td>
+                                <td style="border-right: 2px solid #29426b;">100</td>
+                                <td style="border-right: 2px solid #29426b;">82</td>
+                                <td style="border-right: 2px solid #29426b;">A</td>
+                            </tr>
+                            
+                            <!-- Grand Total Row -->
+                            <tr id="mGrandTotalRow">
+                                <td colspan="5" style="border-bottom:2px solid #29426b; border-top:2px solid #29426b;padding:5px 5px; text-align: left;">
+                                    Grand Total : <span id="mGrandTotal">637</span> / <span id="mTotalMax">800</span> <br>
+                                    In Words : <strong id="mInWords">Six Hundred   Thirty Seven     </strong>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="width: 100%; border-collapse: collapse;border:2px solid #29426b;border-top-width:0px;font-size:13px;">
+                            <tbody><tr>
+                                <td style="border-right: 2px solid #29426b">
+                                    <strong style="border-bottom:2px solid #29426b;width:100%;display:block; color:#29426b;">Date
+                                        Of Issue</strong>
+                                    <span id="mIssueDate">19 Jul 2024</span> </td>
+                                <td style="border-right: 2px solid #29426b">
+                                    <strong style="border-bottom:2px solid #29426b;width:100%;display:block; color:#29426b;">Mode</strong>
+                                    <span id="mMode">Regular</span>
+                                </td>
+                                <td style="border-right: 2px solid #29426b">
+                                    <strong style="border-bottom:2px solid #29426b;width:100%;display:block; color:#29426b;">Result</strong>
+                                    <span id="mResult">Pass</span>
+                                </td>
+                                <td style="border-right: 2px solid #29426b">
+                                    <strong style="border-bottom:2px solid #29426b;width:100%;display:block; color:#29426b;">Percentage</strong>
+                                    <span id="mPercentage">79.63%</span>
+                                </td>
+                                <td>
+                                    <strong style="border-bottom:2px solid #29426b;width:100%;display:block; color:#29426b;">Grade</strong>
+                                    <span id="mGrade">A</span> </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                </div>
+
+                <div style="bottom: 94px;position: absolute;justify-content: space-between;padding:0px 43px;margin-left: 221px;">
+                    <div style="text-align: center;">
+                        <img id="mQrCode" src="/assets/images/logo.png" height="75" width="75">
+                    </div>
+                </div>
+            </div>
+
+            <div class="website-address">
+                <div style="font-weight: 700;font-size:10px;">
+                    www.thebrightfutures.com  <br>
+                    Address: Hanuman Mandir ke pass,  Pahasa Bazar, Mau, Uttar Pradesh 221705
+                </div>
+            </div>
+
+        </div> <!-- #print end-->
+    </main>
+
+    <!-- CLIENT SCRIPT: DYNAMIC DATA BINDING FOR ANY STUDENT -->
+    <script>
+        function showAlert(msg, isSuccess = true) {
+            const el = document.getElementById('statusAlert');
+            el.style.display = 'block';
+            el.style.background = isSuccess ? '#dcfce7' : '#fee2e2';
+            el.style.color = isSuccess ? '#15803d' : '#b91c1c';
+            el.style.border = isSuccess ? '1px solid #86efac' : '1px solid #fca5a5';
+            el.innerHTML = msg;
+        }
+
+        function numberToWords(num) {
+            const a = ['','One ','Two ','Three ','Four ','Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
+            const b = ['', '', 'Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+            num = Math.floor(num);
+            if ((num = num.toString()).length > 9) return 'overflow';
+            let n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return ''; 
+            let str = '';
+            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+            return str.trim();
+        }
+
+        function searchFromPrompt() {
+            const query = document.getElementById('promptSearchInput').value.trim();
+            if (!query) {
+                showAlert('Please enter a roll number or enrollment number.', false);
+                return;
+            }
+            document.getElementById('searchInput').value = query;
+            searchMarksheet();
+        }
+
+        async function searchMarksheet() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showAlert('Please enter a roll number or enrollment number.', false);
+                return;
+            }
+
+            try {
+                let res = await fetch(`/api/students/result/${encodeURIComponent(query)}`);
+                let data = await res.json();
+
+                if (!data.success || !data.student) {
+                    res = await fetch(`/api/students/certificate/${encodeURIComponent(query)}`);
+                    data = await res.json();
+                }
+
+                if (data.success && (data.student || data.data)) {
+                    const student = data.student || data.data;
+                    const result = data.result || {};
+                    const cert = data.certificate || {};
+                    bindMarksheet(student, result, cert, query);
+                    
+                    // Reveal physical canvas, hide empty prompt
+                    document.getElementById('emptyPromptCard').style.display = 'none';
+                    document.getElementById('print').style.display = 'block';
+                    const btnP = document.getElementById('btnPrintToolbar');
+                    if (btnP) btnP.style.display = 'inline-flex';
+
+                    showAlert(`<strong>Result Verified!</strong> Official Statement of Marks loaded for <strong>${student.name}</strong>.`, true);
+                } else {
+                    showAlert('Statement of marks not found for <strong>' + query + '</strong>. Please verify the roll or registration number.', false);
+                }
+            } catch (err) {
+                console.error(err);
+                showAlert('Communication error loading marksheet.', false);
+            }
+        }
+
+        function bindMarksheet(student, result, cert, q) {
+            const roll = student.rollNo || student.enrollmentNo || student.registrationNo || q;
+            const sheetNo = (cert && cert.marksheetNo) || student.marksheetNo || `TBF/${student.course || 'ADCA'}/2026/M001`;
+            const serialNo = (cert && cert.serialNo) || student.serialNo || '15001';
+            const courseTitle = student.course === 'ADCA' ? 'Advance Diploma in Computer Application' : (student.course || 'Advance Diploma in Computer Application');
+            const session = student.session || '2025-2026';
+            const issueDate = (cert && cert.issueDate) ? new Date(cert.issueDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '19 Jul 2024';
+
+            // Compute total, percentage, grade, and pass/fail from marks array
+            let obt = 0;
+            let max = 0;
+            let hasAnyFail = false;
+            const hasMarks = result.marks && Array.isArray(result.marks) && result.marks.length > 0;
+
+            if (hasMarks) {
+                result.marks.forEach(sub => {
+                    const o = Number(sub.marksObtained) || 0;
+                    const m = Number(sub.maxMarks) || 100;
+                    const pass = Number(sub.passingMarks) || 40;
+                    obt += o;
+                    max += m;
+                    if (o < pass) hasAnyFail = true;
+                });
+            } else {
+                obt = result.totalMarks !== undefined ? Number(result.totalMarks) : (result.totalMarksObtained !== undefined ? Number(result.totalMarksObtained) : 637);
+                max = result.totalMaxMarks !== undefined ? Number(result.totalMaxMarks) : 800;
+            }
+
+            const percNum = max > 0 ? (Math.floor((obt / max) * 10000 + 0.5) / 100) : 0;
+            const perc = percNum.toFixed(2) + '%';
+            
+            let grade = 'F';
+            if (hasAnyFail || percNum < 40) {
+                grade = 'F';
+            } else if (percNum >= 90) grade = 'A+';
+            else if (percNum >= 75) grade = 'A';
+            else if (percNum >= 60) grade = 'B';
+            else if (percNum >= 45) grade = 'C';
+            else grade = 'D';
+
+            const status = (hasAnyFail || percNum < 40) ? 'Fail' : (result.result || result.status || 'Pass');
+
+            document.getElementById('mSheetNo').textContent = sheetNo;
+            document.getElementById('mSerialNo').textContent = serialNo;
+            document.getElementById('mStudentName').textContent = student.name || 'STUDENT';
+            document.getElementById('mFatherName').textContent = student.fatherName || '-';
+            document.getElementById('mCourseName').textContent = courseTitle;
+            document.getElementById('mDuration').textContent = student.course === 'DCA' ? '6 Months' : (student.course === 'BCC' ? '3 Months' : (student.course === 'TALLY' ? '4 Months' : '12 Months'));
+            document.getElementById('mSession').textContent = session;
+            document.getElementById('mEnrollmentNo').textContent = student.enrollmentNo || student.registrationNo || roll;
+
+            document.getElementById('mGrandTotal').textContent = obt;
+            document.getElementById('mTotalMax').textContent = max;
+            document.getElementById('mInWords').textContent = numberToWords(obt) + ' Only';
+            document.getElementById('mIssueDate').textContent = issueDate;
+            document.getElementById('mMode').textContent = (cert && cert.mode) || 'Regular';
+            document.getElementById('mResult').textContent = status;
+            document.getElementById('mPercentage').textContent = perc;
+            document.getElementById('mGrade').textContent = grade;
+
+            if (student.photo) {
+                document.getElementById('mPhoto').src = student.photo;
+            }
+
+            // Bind Subject Rows Dynamically if available
+            if (hasMarks) {
+                const tbody = document.getElementById('mMainTableBody');
+                // Remove existing subject rows
+                const existingRows = tbody.querySelectorAll('.subject-row');
+                existingRows.forEach(r => r.remove());
+
+                const totalRow = document.getElementById('mGrandTotalRow');
+
+                result.marks.forEach((sub, idx) => {
+                    const subObt = Number(sub.marksObtained) || 0;
+                    const subMax = Number(sub.maxMarks) || 100;
+                    const subPass = Number(sub.passingMarks) || 40;
+                    const subPerc = subMax > 0 ? (subObt / subMax) * 100 : 0;
+                    let subGrade = 'F';
+                    if (subPerc >= 90) subGrade = 'A+';
+                    else if (subPerc >= 75) subGrade = 'A';
+                    else if (subPerc >= 60) subGrade = 'B';
+                    else if (subPerc >= 45) subGrade = 'C';
+                    else if (subPerc >= 40) subGrade = 'D';
+
+                    const finalSubGrade = sub.grade || subGrade;
+
+                    const tr = document.createElement('tr');
+                    tr.className = 'subject-row';
+                    tr.innerHTML = `
+                        <td style="border-right: 2px solid #29426b;">${idx + 1}.</td>
+                        <td style="border-right: 2px solid #29426b; text-align:left; padding-left:6px;">${sub.subjectName}</td>
+                        <td style="border-right: 2px solid #29426b;">${subMax}</td>
+                        <td style="border-right: 2px solid #29426b; font-weight:700;">${subObt}</td>
+                        <td style="border-right: 2px solid #29426b; font-weight:700; color:${subObt < subPass ? '#b91c1c' : '#29426b'};">${finalSubGrade}</td>
+                    `;
+                    tbody.insertBefore(tr, totalRow);
+                });
+            }
+
+            // Dynamic QR code
+            const qrUrl = encodeURIComponent(`${window.location.origin}/result?rollNo=${encodeURIComponent(roll)}`);
+            document.getElementById('mQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=${qrUrl}`;
+
+            // Update Certificate link
+            document.getElementById('lnkCertificate').href = `/certificate?certNo=${encodeURIComponent(roll)}`;
+        }
+
+        // On Page Load: ONLY search if a query param exists; otherwise keep prompt card visible and document hidden
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rollNo = urlParams.get('rollNo') || urlParams.get('appNo') || urlParams.get('certNo') || urlParams.get('query');
+            if (rollNo && rollNo.trim()) {
+                document.getElementById('searchInput').value = rollNo.trim();
+                const pInput = document.getElementById('promptSearchInput');
+                if (pInput) pInput.value = rollNo.trim();
+                searchMarksheet();
+            } else {
+                // Ensure print canvas stays hidden on direct visit
+                document.getElementById('emptyPromptCard').style.display = 'block';
+                document.getElementById('print').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

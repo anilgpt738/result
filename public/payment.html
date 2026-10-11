@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Payment & UPI Verification Portal | Usha Institute Of Computer Education</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        .pay-hero {
+            background: linear-gradient(135deg, rgba(17, 12, 45, 0.95), rgba(137, 12, 37, 0.85)), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: #ffffff;
+            padding: 50px 0 40px 0;
+            text-align: center;
+        }
+        .qr-card {
+            background: #ffffff;
+            border: 2px solid var(--maroon);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(17, 12, 45, 0.08);
+        }
+        .qr-img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            margin: 12px auto;
+            display: block;
+            border: 1px solid var(--border);
+            padding: 6px;
+            border-radius: 4px;
+        }
+        .upi-pill {
+            background: var(--lavender);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            background: var(--maroon);
+            color: #ffffff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Header Mount -->
+    <div id="siteHeaderMount"></div>
+
+    <!-- Hero Banner -->
+    <section class="pay-hero">
+        <div class="container">
+            <span class="badge" style="background: rgba(255,255,255,0.2); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 40px; margin-bottom: 12px; display: inline-block;">
+                OFFICIAL CASHLESS PAYMENT DESK
+            </span>
+            <h1 style="font-family: var(--font-head); font-size: 42px; margin-bottom: 8px;">Online Fee Payment & UPI Verification</h1>
+            <p style="font-size: 16px; opacity: 0.9; max-width: 650px; margin: 0 auto;">
+                Pay admission fees or monthly installments via any UPI App (Google Pay, PhonePe, Paytm, BHIM) and submit your 12-digit UTR for automatic receipt issuance.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container my-5">
+        <div class="row g-4">
+            
+            <!-- Left Column: Student Lookup & Fee Details -->
+            <div class="col-lg-7">
+                
+                <!-- Card 1: Lookup Student -->
+                <div class="card p-4 mb-4" style="border: 1px solid var(--border); border-radius: var(--radius);">
+                    <h4 class="mb-3" style="font-family: var(--font-head); color: var(--maroon);">
+                        <span class="step-num">1</span> Check Student Fee Ledger
+                    </h4>
+                    <p class="text-muted small mb-3">Enter your Enrollment Number, Application Number, or Roll Number to load pending dues.</p>
+                    
+                    <div class="input-group mb-3">
+                        <input type="text" id="lookupInput" class="form-control" placeholder="e.g. UIS2026001, APP2026001, or 202601000013">
+                        <button class="btn btn-primary" type="button" onclick="lookupStudentFee()" id="btnLookup">
+                            <i class="fa-solid fa-magnifying-glass me-1"></i> Fetch Dues
+                        </button>
+                    </div>
+                    
+                    <div id="lookupAlert" class="alert d-none py-2 px-3 small"></div>
+
+                    <!-- Student Fee Summary Card (Visible after lookup) -->
+                    <div id="feeSummaryCard" class="d-none mt-3 p-3" style="background: var(--lavender); border-radius: var(--radius); border-left: 4px solid var(--maroon);">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold mb-0 text-dark" id="dispStudentName">-</h5>
+                            <span class="badge bg-secondary" id="dispCourse">-</span>
+                        </div>
+                        <div class="small text-muted mb-3" id="dispStudentMeta">Roll: - | Father: -</div>
+
+                        <div class="row g-2 text-center">
+                            <div class="col-4">
+                                <div class="bg-white p-2 rounded border">
+                                    <small class="text-muted d-block">Total Fee</small>
+                                    <strong class="text-dark" id="dispTotalFee">₹0</strong>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="bg-white p-2 rounded border">
+                                    <small class="text-muted d-block">Paid Amount</small>
+                                    <strong class="text-success" id="dispPaidFee">₹0</strong>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="bg-white p-2 rounded border">
+                                    <small class="text-muted d-block">Pending Dues</small>
+                                    <strong class="text-danger" id="dispPendingFee">₹0</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Installments list -->
+                        <div class="mt-3">
+                            <label class="form-label fw-bold small text-dark mb-1">Select Installment / Purpose</label>
+                            <select id="feePurposeSelect" class="form-select form-select-sm" onchange="onPurposeChange()">
+                                <option value="monthly_installment" data-amount="500">Monthly Tuition Installment (₹500)</option>
+                                <option value="registration" data-amount="300">Registration Fee (₹300)</option>
+                                <option value="exam_fee" data-amount="700">Semester Exam & Material Fee (₹700)</option>
+                                <option value="custom" data-amount="0">Custom Amount (Enter Below)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: UPI Proof Submission Form -->
+                <div class="card p-4" style="border: 1px solid var(--border); border-radius: var(--radius);">
+                    <h4 class="mb-3" style="font-family: var(--font-head); color: var(--maroon);">
+                        <span class="step-num">3</span> Submit UPI Proof (UTR Details)
+                    </h4>
+                    <p class="text-muted small mb-3">After making the payment via UPI, enter the 12-digit transaction number (UTR) from your payment app.</p>
+
+                    <form id="proofForm" onsubmit="submitUpiProof(event)" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Enrollment / Application No. *</label>
+                                <input type="text" id="proofIdentifier" class="form-control" required placeholder="e.g. UIS2026001">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Amount Paid (₹) *</label>
+                                <input type="number" id="proofAmount" class="form-control" required min="1" placeholder="e.g. 500" oninput="updateQrCode()">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">12-Digit UPI UTR / Reference No. *</label>
+                                <input type="text" id="proofUtr" class="form-control" required maxlength="12" pattern="\d{12}" placeholder="e.g. 426819283741" title="Please enter exactly 12 numeric digits">
+                                <small class="text-muted" style="font-size: 11px;">Find this in your UPI app under 'Transaction Details' / 'UTR'</small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Payer Name / UPI ID *</label>
+                                <input type="text" id="proofPayerName" class="form-control" required placeholder="e.g. Ramesh Kumar">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Date & Time of Payment *</label>
+                                <input type="datetime-local" id="proofDate" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Payment Screenshot (Optional)</label>
+                                <input type="file" id="proofScreenshot" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div id="submitAlert" class="alert d-none mt-3 py-2 px-3 small"></div>
+
+                        <div class="mt-4">
+                            <button type="submit" id="btnSubmitProof" class="btn btn-primary btn-pill w-100 py-2">
+                                <i class="fa-solid fa-paper-plane me-1"></i> Submit Payment Proof for Verification
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Live Dynamic UPI QR & Payment Info -->
+            <div class="col-lg-5">
+                <div class="qr-card">
+                    <span class="step-num">2</span>
+                    <h4 class="d-inline-block fw-bold text-dark mb-1" style="font-family: var(--font-head);">Scan & Pay via UPI</h4>
+                    <p class="text-muted small mb-3">Compatible with PhonePe, Google Pay, Paytm, BHIM</p>
+
+                    <!-- Dynamic QR Image -->
+                    <img id="dynamicQrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi%3A%2F%2Fpay%3Fpa%3D7275043143%40ybl%26pn%3DUsha%2520Institute%2520Of%2520Computer%2520Education%26cu%3DINR" alt="UPI QR Code" class="qr-img">
+
+                    <div class="mt-2 mb-3">
+                        <small class="text-muted d-block mb-1">Official Institute UPI VPA</small>
+                        <div class="upi-pill">
+                            <span>7275043143@ybl</span>
+                            <button class="btn btn-link btn-sm p-0 text-dark" onclick="copyUpi()" title="Copy VPA">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-3 text-start small rounded" style="background: var(--lavender); border: 1px solid var(--border);">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Payee Name:</span>
+                            <strong>Usha Institute Of Computer Education</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">ATC Code:</span>
+                            <strong>IN/UP/MAU/29172</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Current Amount:</span>
+                            <strong class="text-danger" id="dispQrAmount">₹500</strong>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Direct Intent Link -->
+                    <div class="mt-3">
+                        <a id="btnPayMobileApp" href="upi://pay?pa=7275043143@ybl&pn=Usha%20Institute%20Of%20Computer%20Education&am=500&cu=INR" class="btn btn-outline-dark btn-pill w-100 py-2 d-md-none">
+                            <i class="fa-solid fa-mobile-screen-button me-1"></i> Open in UPI App (Mobile)
+                        </a>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-start">
+                        <h6 class="fw-bold text-dark mb-2"><i class="fa-solid fa-circle-info text-primary me-2"></i>Cash Payment Notice</h6>
+                        <p class="text-muted small mb-0">
+                            Cash payments are accepted directly at the institute counter during working hours (08:00 AM – 05:00 PM, Mon–Sat). Official computerised receipts are issued immediately.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Shared Footer Mount -->
+    <div id="siteFooterMount"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        // Set current date/time as default in proof form
+        document.addEventListener('DOMContentLoaded', () => {
+            const now = new Date();
+            const localIso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+            document.getElementById('proofDate').value = localIso;
+
+            // Auto-lookup if param passed in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const q = urlParams.get('enrollNo') || urlParams.get('appNo') || urlParams.get('id');
+            if (q) {
+                document.getElementById('lookupInput').value = q;
+                lookupStudentFee();
+            }
+        });
+
+        function copyUpi() {
+            navigator.clipboard.writeText('7275043143@ybl');
+            alert('UPI ID (7275043143@ybl) copied to clipboard!');
+        }
+
+        async function lookupStudentFee() {
+            const query = document.getElementById('lookupInput').value.trim();
+            const alertBox = document.getElementById('lookupAlert');
+            const btn = document.getElementById('btnLookup');
+
+            if (!query) {
+                alertBox.className = 'alert alert-warning py-2 small';
+                alertBox.textContent = 'Please enter an Enrollment or Application number.';
+                alertBox.classList.remove('d-none');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Fetching...';
+            alertBox.classList.add('d-none');
+
+            try {
+                const res = await fetch(`/api/payments/student/${encodeURIComponent(query)}`);
+                const data = await res.json();
+
+                if (data.success && data.data && data.data.student) {
+                    const s = data.data.student;
+                    document.getElementById('dispStudentName').textContent = s.name;
+                    document.getElementById('dispCourse').textContent = s.course;
+                    document.getElementById('dispStudentMeta').textContent = `Roll: ${s.rollNo || s.enrollmentNo || s.appNo} | Father: ${s.fatherName || '-'}`;
+                    document.getElementById('dispTotalFee').textContent = `₹${s.totalFee || 7000}`;
+                    document.getElementById('dispPaidFee').textContent = `₹${s.paidAmount || 0}`;
+                    document.getElementById('dispPendingFee').textContent = `₹${s.pendingAmount !== undefined ? s.pendingAmount : (s.totalFee - (s.paidAmount || 0))}`;
+
+                    document.getElementById('proofIdentifier').value = s.enrollmentNo || s.appNo || query;
+                    document.getElementById('feeSummaryCard').classList.remove('d-none');
+
+                    // If installments exist, populate select
+                    if (s.installments && s.installments.length > 0) {
+                        const sel = document.getElementById('feePurposeSelect');
+                        sel.innerHTML = '';
+                        s.installments.forEach(inst => {
+                            if (inst.status !== 'Paid') {
+                                const opt = document.createElement('option');
+                                opt.value = `installment_${inst.installmentNo}`;
+                                opt.dataset.amount = inst.amount - (inst.paidAmount || 0);
+                                opt.textContent = `${inst.title} (Due: ₹${opt.dataset.amount})`;
+                                sel.appendChild(opt);
+                            }
+                        });
+                        const customOpt = document.createElement('option');
+                        customOpt.value = 'custom';
+                        customOpt.dataset.amount = '0';
+                        customOpt.textContent = 'Custom Amount';
+                        sel.appendChild(customOpt);
+                    }
+
+                    onPurposeChange();
+                } else {
+                    alertBox.className = 'alert alert-danger py-2 small';
+                    alertBox.textContent = data.message || 'Student fee record not found. Please check number.';
+                    alertBox.classList.remove('d-none');
+                }
+            } catch (err) {
+                console.error(err);
+                alertBox.className = 'alert alert-danger py-2 small';
+                alertBox.textContent = 'Server error fetching student data.';
+                alertBox.classList.remove('d-none');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-1"></i> Fetch Dues';
+            }
+        }
+
+        function onPurposeChange() {
+            const sel = document.getElementById('feePurposeSelect');
+            const selectedOpt = sel.options[sel.selectedIndex];
+            const amount = selectedOpt.dataset.amount || 500;
+            if (Number(amount) > 0) {
+                document.getElementById('proofAmount').value = amount;
+                updateQrCode();
+            }
+        }
+
+        function updateQrCode() {
+            const amt = document.getElementById('proofAmount').value || 500;
+            const ident = document.getElementById('proofIdentifier').value || 'STUDENT';
+            document.getElementById('dispQrAmount').textContent = `₹${amt}`;
+
+            const upiString = `upi://pay?pa=7275043143@ybl&pn=Usha%20Institute%20Of%20Computer%20Education&am=${amt}&cu=INR&tn=${encodeURIComponent(ident)}`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
+            document.getElementById('dynamicQrImage').src = qrUrl;
+
+            const mobileBtn = document.getElementById('btnPayMobileApp');
+            if (mobileBtn) mobileBtn.href = upiString;
+        }
+
+        async function submitUpiProof(e) {
+            e.preventDefault();
+
+            const alertBox = document.getElementById('submitAlert');
+            const btn = document.getElementById('btnSubmitProof');
+
+            const identifier = document.getElementById('proofIdentifier').value.trim();
+            const amount = document.getElementById('proofAmount').value.trim();
+            const upiRefNo = document.getElementById('proofUtr').value.trim();
+            const payerName = document.getElementById('proofPayerName').value.trim();
+            const transactionDate = document.getElementById('proofDate').value;
+            const screenshot = document.getElementById('proofScreenshot').files[0];
+
+            if (!/^\d{12}$/.test(upiRefNo)) {
+                alertBox.className = 'alert alert-warning py-2 small';
+                alertBox.textContent = 'UTR Number must be exactly 12 numeric digits.';
+                alertBox.classList.remove('d-none');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Submitting Proof...';
+            alertBox.classList.add('d-none');
+
+            const formData = new FormData();
+            formData.append('identifier', identifier);
+            formData.append('amount', amount);
+            formData.append('upiRefNo', upiRefNo);
+            formData.append('payerName', payerName);
+            formData.append('transactionDate', transactionDate);
+            formData.append('feeHead', 'monthly_installment');
+            if (screenshot) formData.append('screenshot', screenshot);
+
+            try {
+                const res = await fetch('/api/payments/submit-proof', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    alertBox.className = 'alert alert-success py-3';
+                    alertBox.innerHTML = `
+                        <h6 class="fw-bold mb-1"><i class="fa-solid fa-circle-check me-1"></i> Proof Submitted Successfully!</h6>
+                        <p class="mb-1">Your UTR <strong>${upiRefNo}</strong> for ₹${amount} is under verification.</p>
+                        <small class="text-muted">Verification takes 2–4 hours. Once verified, official receipt <strong>UICE/R/...</strong> will be issued to your portal.</small>
+                    `;
+                    alertBox.classList.remove('d-none');
+                    document.getElementById('proofForm').reset();
+                } else {
+                    alertBox.className = 'alert alert-danger py-2 small';
+                    alertBox.textContent = result.message || 'Submission failed. Please check inputs.';
+                    alertBox.classList.remove('d-none');
+                }
+            } catch (err) {
+                console.error(err);
+                alertBox.className = 'alert alert-danger py-2 small';
+                alertBox.textContent = 'Server error during submission.';
+                alertBox.classList.remove('d-none');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane me-1"></i> Submit Payment Proof for Verification';
+            }
+        }
+    </script>
+</body>
+</html>

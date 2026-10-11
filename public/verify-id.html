@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital ID Card Verification | Usha Institute Of Computer Education</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/torchlight-tokens.css">
+</head>
+<body class="bg-light">
+
+    <!-- Header -->
+    <header class="bg-navy-lead py-3 shadow-sm" style="border-bottom: 2px solid var(--color-gold-500);">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="d-flex align-items-center gap-2 text-decoration-none text-white">
+                <img src="/assets/images/logo.png" height="42" width="42" alt="Logo">
+                <div>
+                    <div style="font-size:14px; font-weight:800; color:var(--color-gold-500);">USHA INSTITUTE</div>
+                    <div style="font-size:9.5px; color:#cbd5e1;">OFFICIAL DIGITAL CREDENTIALS</div>
+                </div>
+            </a>
+            <div>
+                <a href="/verify" class="btn btn-torch-primary btn-sm"><i class="fa-solid fa-award me-1"></i> Verify Certificate</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5" style="max-width: 650px;">
+        <div class="bento-card text-center p-4">
+            
+            <div id="loadingState">
+                <i class="fa-solid fa-spinner fa-spin fa-2x text-primary mb-3"></i>
+                <h5>Verifying Institutional ID Card Record...</h5>
+            </div>
+
+            <div id="verifiedState" class="d-none text-start">
+                <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
+                    <div>
+                        <span class="badge-status badge-status-success mb-2"><i class="fa-solid fa-shield-check"></i> Digitally Verified</span>
+                        <h4 class="editorial-heading mb-0 text-navy-lead" id="cardName">STUDENT NAME</h4>
+                        <small class="text-muted" id="cardEnroll">Enrollment No: UIS202600001</small>
+                    </div>
+                    <img id="cardPhoto" src="/assets/images/default-student.jpeg" style="width:75px;height:90px;object-fit:cover;border-radius:6px;border:2px solid var(--color-navy-900);" alt="Photo">
+                </div>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <small class="text-muted d-block">Course Program</small>
+                        <strong id="cardCourse">ADCA</strong>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block">Academic Batch</small>
+                        <strong id="cardBatch">Morning Batch</strong>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block">Father's Name</small>
+                        <strong id="cardFather">-</strong>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted d-block">Card Validity</small>
+                        <strong class="text-success" id="cardValid">Valid Active</strong>
+                    </div>
+                </div>
+
+                <div class="alert alert-success py-2 px-3 small mb-3">
+                    <i class="fa-solid fa-circle-check me-1"></i> This is an official digital identity card issued by <strong>Usha Institute Of Computer Education</strong> (ATC: IN/UP/MAU/29172).
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-torch-primary w-100" onclick="window.print()"><i class="fa-solid fa-print me-1"></i> Print Proof</button>
+                    <a href="/" class="btn btn-torch-secondary w-100"><i class="fa-solid fa-house me-1"></i> Main Portal</a>
+                </div>
+            </div>
+
+            <div id="invalidState" class="d-none">
+                <div class="text-danger mb-3"><i class="fa-solid fa-circle-xmark fa-3x"></i></div>
+                <h4 class="editorial-heading text-danger">Invalid or Expired ID Card</h4>
+                <p class="text-muted small">No active identity card found matching this identifier in the institutional register.</p>
+                <a href="/" class="btn btn-torch-secondary btn-sm">Return to Homepage</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            const id = pathParts[pathParts.length - 1];
+
+            try {
+                const res = await fetch(`/api/students/certificate/${encodeURIComponent(id)}`);
+                const data = await res.json();
+
+                document.getElementById('loadingState').classList.add('d-none');
+
+                if (data.success && (data.student || data.data)) {
+                    const s = data.student || data.data;
+                    document.getElementById('cardName').textContent = s.name;
+                    document.getElementById('cardEnroll').textContent = `Enrollment No: ${s.enrollmentNo || s.registrationNo || id}`;
+                    document.getElementById('cardCourse').textContent = s.course || 'ADCA';
+                    document.getElementById('cardBatch').textContent = s.batch || 'Regular Session';
+                    document.getElementById('cardFather').textContent = s.fatherName || '-';
+                    if (s.photo) document.getElementById('cardPhoto').src = s.photo;
+                    document.getElementById('verifiedState').classList.remove('d-none');
+                } else {
+                    document.getElementById('invalidState').classList.remove('d-none');
+                }
+            } catch (err) {
+                document.getElementById('loadingState').classList.add('d-none');
+                document.getElementById('invalidState').classList.remove('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "extractedAt": "2026-10-11T03:17:13.069Z",
+  "templates": [
+    {
+      "file": "v1_certificate_raw.html",
+      "title": "Raw Certificate Template v1",
+      "sha256": "51fed80035151f5f0db9877b5fbb01fdd0561097caa41795f89d299b6311d3da",
+      "bytes": 9338,
+      "source": "./certificate.html"
+    },
+    {
+      "file": "v1_marksheet_raw.html",
+      "title": "Raw Marksheet Template v1",
+      "sha256": "62a9650749fef04b636453bfd652605975616dae0f6255389007e839ae1048f5",
+      "bytes": 15405,
+      "source": "./result.html"
+    },
+    {
+      "file": "v1_admit_card_raw.html",
+      "title": "Raw Admit Card Template v1",
+      "sha256": "93630c2c524fa69192e095f747d461468a3059b741c01ac5bb35c181aa158a3b",
+      "bytes": 17917,
+      "source": "C:/Users/Anil Gupta/Documents/Usha Institute - Homepage Design/admit card.html"
+    }
+  ]
+}

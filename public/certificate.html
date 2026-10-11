@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Certificate of Completion | Usha Institute of Computer Education</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+    </style>
+
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        background: #e2e8f0;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* Scoped Action Toolbar (No-Print) */
+    .cert-toolbar {
+        background-color: #0b1230;
+        border-bottom: 2px solid #c9a45c;
+        padding: 10px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #ffffff;
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        font-family: 'Kanit', sans-serif;
+    }
+    .cert-toolbar * {
+        box-sizing: border-box;
+    }
+    .cert-toolbar a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+    .cert-search-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 4px 10px;
+    }
+    .cert-search-input {
+        border: none;
+        outline: none;
+        font-size: 13px;
+        font-family: 'Kanit', sans-serif;
+        width: 260px;
+        color: #0b1230;
+    }
+    .btn-action-gold {
+        background-color: #c9a45c;
+        color: #0b1230;
+        font-weight: 700;
+        font-size: 13px;
+        padding: 6px 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+    }
+    .btn-action-outline {
+        background-color: transparent;
+        color: #ffffff;
+        border: 1px solid rgba(255,255,255,0.4);
+        font-weight: 600;
+        font-size: 13px;
+        padding: 6px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+    }
+
+    .cert-stage {
+        display: flex;
+        justify-content: center;
+        padding: 30px 10px 60px 10px;
+        overflow-x: auto;
+    }
+
+    /* ============================================================
+       EXACT ORIGINAL GOLDEN CERTIFICATE CANVAS (1580px × 1100px)
+       ============================================================ */
+    .background {
+        background: url("/assets/backgrounds/cert-bg.jpeg"), url("https://center.pmkvyedu.com/upload/semester_certificate/semester-certificate_design_9.jpeg");
+        width: 1580px;
+        min-width: 1580px;
+        height: 1100px;
+        background-size: 100% 100%;
+        position: relative;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    }
+
+    .center-name {
+        font-family: "Oswald", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 55px;
+        color: #29426b;
+    }
+
+    .col-red {
+        color: #29426b;
+    }
+    .text-font { font-size: 15px; }
+    .text1 {
+        margin-top: 178px;
+        margin-left: 128px;
+        text-align: center;
+        margin-right: 110px;
+    }
+
+    .roll_no_text {
+        margin-top: 10px;
+        margin-left: 559px;
+        font-size: 20px;
+        position: inherit;
+    }
+
+    .roll_no {
+        margin-top: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        position: inherit;
+        text-align: center;
+    }
+
+    .qr_code {
+        top: 29px;
+        left: 29px;
+        position: absolute;
+    }
+
+    .photo {
+        position: absolute;
+        right: 33px;
+        top: 29px;
+    }
+
+    .st-name {
+        margin-top: 6px;
+        font-size: 21px;
+        font-weight: bold;
+        transform: scale(1.2, 1);
+        line-height: 30px;
+        font-family: "Kanit", sans-serif;
+    }
+
+    .text {
+        margin-top: 8px;
+        font-size: 25px;
+    }
+
+    .course_short {
+        margin-top: 38px;
+        font-size: 23px;
+        font-weight: bold;
+        position: relative;
+        text-align: center;
+    }
+
+    .course {
+        text-align: center;
+    }
+
+    .grade {
+        font-size: 23px;
+        padding: 0px 60px;
+        margin-top: 10px;
+    }
+
+    .ins_name {
+        margin-top: 20px;
+        margin-left: 58px;
+        font-size: 28px;
+        position: relative;
+        font-weight: bold;
+    }
+
+    .center_code {
+        margin-top: 20px;
+        margin-left: 58px;
+        font-size: 26px;
+        position: relative;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px 35px 5px 35px;
+    }
+
+    .address {
+        text-align: center;
+        font-weight: 600;
+        font-size: 13px;
+        margin-top: 15px;
+    }
+    .signature {
+        text-align: left;
+        margin-left: 80px;
+        margin-top: 27px;
+    }
+
+    .webiste-address {
+        position: absolute;
+        bottom: 102px;
+        width: 100%;
+        text-align: center;
+    }
+   
+    .certificate_no {
+        position: absolute;
+        left: 167px;
+        top: 111px;
+        font-size: 13px;
+    }
+
+    .footer_text {
+        font-size: 8px;
+        margin-left: 1119px;
+        margin-top: 40px;
+        font-weight: 700;
+        width: 329px;
+    }
+
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+        body {
+            background: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .cert-stage {
+            padding: 0 !important;
+            margin: 0 !important;
+            display: block !important;
+        }
+        .background {
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            page-break-after: always;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- TOP ACTION TOOLBAR (NO-PRINT) -->
+    <header class="cert-toolbar no-print">
+        <div style="display:flex; align-items:center; gap:16px;">
+            <a href="/" style="font-weight:800; font-size:16px; color:#c9a45c; letter-spacing:1px;">
+                <i class="fa-solid fa-graduation-cap" style="margin-right:6px;"></i> USHA INSTITUTE
+            </a>
+            <span style="font-size:12px; color:#94a3b8;" class="d-none d-md-inline">Official Certificate Verification (ATC: IN/UP/MAU/29172)</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <a href="/" class="btn-action-outline"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="cert-search-box">
+                <i class="fa-solid fa-magnifying-glass" style="font-size:12px; color:#64748b;"></i>
+                <input type="text" id="searchInput" class="cert-search-input" placeholder="Roll / Enrollment / Certificate..." value="" onkeydown="if(event.key==='Enter') searchCertificate()">
+                <button type="button" class="btn-action-gold" style="padding:4px 10px; font-size:12px;" onclick="searchCertificate()">Verify</button>
+            </div>
+
+            <button type="button" class="btn-action-gold" onclick="window.print()" id="btnPrintToolbar" style="display:none;">
+                <i class="fa-solid fa-print"></i> Print Certificate
+            </button>
+            <a href="/result" id="lnkMarksheet" class="btn-action-outline">
+                <i class="fa-solid fa-file-lines"></i> Marksheet
+            </a>
+            <a href="/admit-card" class="btn-action-outline">
+                <i class="fa-solid fa-id-card-clip"></i> Admit Card
+            </a>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION BANNER (NO-PRINT) -->
+    <div id="statusAlert" class="no-print" style="display:none; max-width:800px; margin:15px auto -15px auto; padding:10px 18px; border-radius:6px; font-family:'Kanit',sans-serif; font-size:13px; font-weight:600; text-align:center;"></div>
+
+    <!-- MAIN STAGE -->
+    <main class="cert-stage">
+
+        <!-- 1. EMPTY SEARCH PROMPT (SHOWN BY DEFAULT ON VISIT) -->
+        <div id="emptyPromptCard" class="no-print" style="max-width: 720px; width: 100%; margin: 30px auto; background: #ffffff; border-radius: 16px; padding: 45px 30px; text-align: center; box-shadow: 0 10px 30px rgba(11,18,48,0.1); border: 2px solid #c9a45c; font-family: 'Kanit', sans-serif;">
+            <div style="width: 76px; height: 76px; border-radius: 50%; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 style="color: #0b1230; font-weight: 800; margin-bottom: 8px;">Verify Official Institute Certificate</h3>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 25px; max-width: 540px; margin-left: auto; margin-right: auto; font-family: sans-serif;">
+                Enter student <strong>Certificate Number</strong>, <strong>Roll Number</strong>, or <strong>Enrollment Number</strong> to verify authenticity and view the official certificate of completion.
+            </p>
+            <div style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto 20px auto;">
+                <input type="text" id="promptSearchInput" placeholder="e.g. UIS2026001 or TBF/ADCA/2026/001" style="flex: 1; padding: 12px 16px; border-radius: 8px; border: 2px solid #cbd5e1; font-weight: 600; font-size: 14px; font-family: sans-serif; outline: none;" onkeydown="if(event.key==='Enter') searchFromPrompt()">
+                <button type="button" class="btn-action-gold" style="padding: 12px 22px; font-size: 14px; white-space: nowrap;" onclick="searchFromPrompt()">
+                    <i class="fa-solid fa-award"></i> Verify
+                </button>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; font-size: 12px; color: #64748b; font-family: sans-serif;">
+                <span><i class="fa-solid fa-shield-halved text-success me-1"></i> Authorized Center: <strong>IN/UP/MAU/29172</strong></span>
+                <span>•</span>
+                <span><i class="fa-solid fa-graduation-cap text-primary me-1"></i> Academic Session: <strong>2026</strong></span>
+            </div>
+        </div>
+
+        <!-- 2. MAIN CERTIFICATE CANVAS (1580px × 1100px EXACT - HIDDEN UNTIL SEARCHED) -->
+        <div class="background" id="print" style="display: none;">
+            <!-- Center Watermark Logo -->
+            <div style="position: absolute;top: 450px;left: 580px;opacity: 0.1;">
+                <img src="/assets/images/logo.png" onerror="this.src='https://center.pmkvyedu.com/upload/logo/1787653813.png'" height="400" width="400">
+            </div>
+
+            <!-- Top Left Serial No -->
+            <div class="certificate_no">
+                <strong class="col-red">Serial No.: </strong> <span class="col-red" id="cSerialNo">15001</span>
+            </div>
+            
+            <div style="position: relative;left: 133px;width: 83%;top: 101px;height: 77%;">
+
+                <!-- Top Center Institute Name & Logo -->
+                <div class="header">
+                    <div>
+                        <img src="/assets/images/logo.png" onerror="this.src='https://center.pmkvyedu.com/upload/logo/1787653813.png'" height="140" width="140" style="margin-top:15px;">
+                    </div> 
+                    <div style="flex:1;">
+                        <div style="text-align: center;line-height:50px;letter-spacing:2px;" class="center-name">
+                            Usha Institute Of Computer Education
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Right Student Photo -->
+                <div class="photo">
+                    <img id="cPhoto" src="/assets/images/default-student.jpeg" onerror="this.src='https://center.pmkvyedu.com/upload/users/19371787653366.jpeg'" height="110" width="100" style="border:3px solid #e4e4e4;">
+                </div>
+
+                <!-- Top Left QR Code -->
+                <div class="qr_code">
+                    <img id="cQrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.thebrightfutures.com" height="100" width="100" style="border:3px solid #e4e4e4;">
+                </div>
+
+                <!-- Certificate Body Text (Exact Golden Positions) -->
+                <div class="text1">
+                    <div><i>This is to certify that</i></div>
+                    <div class="st-name col-red">
+                        <span>
+                            <span id="cStudentName">OMKAR VISHWAKARMA</span> <br>
+                            S/o <span id="cFatherName">RAMESH VISHWAKARMA</span>
+                        </span>
+                    </div>
+                    <div class="text-font" style="line-height: 30px;">
+                        <div class="text-font"><i> For successfully Completing The </i></div>
+                        <strong class="col-red" id="cCourse" style="font-style: italic;font-size:18px;font-family:Kanit, sans-serif;">Advance Diploma in Computer Application (ADCA)</strong> <br>
+                        <strong style="font-style: italic;">Session: <span class="col-red" id="cSession">2023-2024</span></strong> <br>
+                        <strong style="font-style: italic;">Duration: <span class="col-red" id="cDuration">12 Months</span></strong> 
+                        <span id="cProgramText">(1 Year Program)</span> <br>
+                        <div style="padding: 0px 100px;line-height: 20px;margin-top:12px;">
+                            <i>The candidate has appeared in the prescribed examination of The Bright Futures Vocational Division and has been declared PASS based on theory, practical and internal assessment.</i>
+                        </div>
+                        <div style="line-height: 20px;margin-top:12px;">
+                            <i> The training and academy instruction were provided at</i> <br>
+                            <div>
+                                <strong class="col-red"><i>Usha institute of computer education</i></strong> 
+                                <i>Center Code:-</i> 
+                                <strong class="col-red"><i>IN/UP/MAU/29172</i></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Summary Table (Exact 2 Rows) -->
+                    <div class="grade">
+                        <table style="width: 100%;border-collapse:collapse;border:1px solid #29426b;font-size:13px; font-family: Kanit, sans-serif;font-weight:600;">
+                            <tbody>
+                                <tr>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Certificate No:-</span> <span id="cCertNo">TBF/ADCA/2024/31158</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Mode:-</span> <span id="cMode">Regular</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Date Of Issue:-</span> <span id="cIssueDate">19 Jul 2024</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Grand Total:-</span> <span id="cGrandTotal">637 / 800</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Enrollment No:-</span> <span id="cEnrollmentNo">202536924646</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Result:-</span> <span id="cResult">Pass</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Grade:-</span> <span id="cGrade">A</span></td>
+                                    <td style="border:1px solid #29426b;padding:7px 10px;"><span class="col-red">Percentage:-</span> <span id="cPercentage">79.63%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+            </div>
+
+            <!-- Bottom Left Seal -->
+            <div style="position: absolute;bottom: 95px;left: 206px;">
+                <span class="stamp_wrapper">
+                    <img src="/assets/images/seal.png" onerror="this.src='https://center.pmkvyedu.com/upload/logo/1787653881.png'" width="100">
+                </span>
+            </div>
+            
+            <!-- Bottom Right Signature -->
+            <div style="position: absolute;bottom: 95px;right: 190px;">
+                <span class="stamp_wrapper">
+                    <img src="/assets/images/signature.png" onerror="this.src='https://center.pmkvyedu.com/upload/semester_certificate/signature.png'" width="140">
+                </span>
+            </div>
+            
+            <!-- Bottom Address & Website -->
+            <div class="webiste-address">
+                <div style="font-weight: 700;font-size:10px;">
+                    www.thebrightfutures.com  <br>
+                    Address: Hanuman Mandir ke pass,  Pahasa Bazar, Mau, Uttar Pradesh 221705                
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- CLIENT SCRIPT: DYNAMIC DATA BINDING FOR ANY STUDENT -->
+    <script>
+        function showAlert(msg, isSuccess = true) {
+            const el = document.getElementById('statusAlert');
+            el.style.display = 'block';
+            el.style.background = isSuccess ? '#dcfce7' : '#fee2e2';
+            el.style.color = isSuccess ? '#15803d' : '#b91c1c';
+            el.style.border = isSuccess ? '1px solid #86efac' : '1px solid #fca5a5';
+            el.innerHTML = msg;
+        }
+
+        function searchFromPrompt() {
+            const query = document.getElementById('promptSearchInput').value.trim();
+            if (!query) {
+                showAlert('Please enter an enrollment, roll or certificate number.', false);
+                return;
+            }
+            document.getElementById('searchInput').value = query;
+            searchCertificate();
+        }
+
+        async function searchCertificate() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showAlert('Please enter an enrollment, roll or certificate number.', false);
+                return;
+            }
+
+            try {
+                let res = await fetch(`/api/students/certificate/${encodeURIComponent(query)}`);
+                let data = await res.json();
+
+                if (!data.success || !data.student) {
+                    res = await fetch(`/api/public/verify/certificate/${encodeURIComponent(query)}`);
+                    data = await res.json();
+                }
+
+                if (data.success && (data.student || data.data)) {
+                    const student = data.student || data.data;
+                    const cert = data.certificate || {};
+                    const result = data.result || {};
+                    bindCertificate(student, cert, result, query);
+
+                    // Reveal canvas, hide empty prompt
+                    document.getElementById('emptyPromptCard').style.display = 'none';
+                    document.getElementById('print').style.display = 'block';
+                    const btnP = document.getElementById('btnPrintToolbar');
+                    if (btnP) btnP.style.display = 'inline-flex';
+
+                    showAlert(`<strong>Verified!</strong> Official certificate loaded for <strong>${student.name}</strong>.`, true);
+                } else {
+                    showAlert('No record found matching "<strong>' + query + '</strong>". Please verify the enrollment number.', false);
+                }
+            } catch (err) {
+                console.error(err);
+                showAlert('Communication error loading certificate.', false);
+            }
+        }
+
+        function bindCertificate(student, cert, result, q) {
+            const roll = student.rollNo || student.enrollmentNo || student.registrationNo || q;
+            const certNo = cert.certificateNo || student.certificateNo || `TBF/${student.course || 'ADCA'}/2026/001`;
+            const serial = cert.serialNo || student.serialNo || '15001';
+            const courseTitle = student.course === 'ADCA' ? 'Advance Diploma in Computer Application (ADCA)' : 
+                                (student.course === 'DCA' ? 'Diploma in Computer Applications (DCA)' :
+                                (student.course === 'BCC' ? 'Basic Computer Course (BCC)' :
+                                (student.course === 'TALLY' ? 'Tally Prime Computerized Accounting' : (student.course || 'Advance Diploma in Computer Application (ADCA)'))));
+            const session = student.session || '2025-2026';
+            const issueDate = cert.issueDate ? new Date(cert.issueDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '19 Jul 2024';
+
+            // Compute total, percentage, grade, and pass/fail from marks array
+            let obt = 0;
+            let max = 0;
+            let hasAnyFail = false;
+            const hasMarks = result.marks && Array.isArray(result.marks) && result.marks.length > 0;
+
+            if (hasMarks) {
+                result.marks.forEach(sub => {
+                    const o = Number(sub.marksObtained) || 0;
+                    const m = Number(sub.maxMarks) || 100;
+                    const pass = Number(sub.passingMarks) || 40;
+                    obt += o;
+                    max += m;
+                    if (o < pass) hasAnyFail = true;
+                });
+            } else {
+                obt = result.totalMarks !== undefined ? Number(result.totalMarks) : (result.totalMarksObtained !== undefined ? Number(result.totalMarksObtained) : 637);
+                max = result.totalMaxMarks !== undefined ? Number(result.totalMaxMarks) : 800;
+            }
+
+            const percNum = max > 0 ? (Math.floor((obt / max) * 10000 + 0.5) / 100) : 0;
+            const perc = percNum.toFixed(2) + '%';
+            
+            let grade = 'F';
+            if (hasAnyFail || percNum < 40) {
+                grade = 'F';
+            } else if (percNum >= 90) grade = 'A+';
+            else if (percNum >= 75) grade = 'A';
+            else if (percNum >= 60) grade = 'B';
+            else if (percNum >= 45) grade = 'C';
+            else grade = 'D';
+
+            const status = (hasAnyFail || percNum < 40) ? 'Fail' : (result.result || result.status || 'Pass');
+
+            document.getElementById('cSerialNo').textContent = serial;
+            document.getElementById('cStudentName').textContent = student.name || 'STUDENT';
+            document.getElementById('cFatherName').textContent = student.fatherName || '-';
+            document.getElementById('cCourse').textContent = courseTitle;
+            document.getElementById('cSession').textContent = session;
+            
+            const duration = student.course === 'DCA' ? '6 Months' : (student.course === 'BCC' ? '3 Months' : (student.course === 'TALLY' ? '4 Months' : '12 Months'));
+            document.getElementById('cDuration').textContent = duration;
+            document.getElementById('cProgramText').textContent = student.course === 'ADCA' ? '(1 Year Program)' : `(${duration} Program)`;
+
+            document.getElementById('cCertNo').textContent = certNo;
+            document.getElementById('cMode').textContent = cert.mode || 'Regular';
+            document.getElementById('cIssueDate').textContent = issueDate;
+            document.getElementById('cGrandTotal').textContent = `${obt} / ${max}`;
+            document.getElementById('cEnrollmentNo').textContent = student.enrollmentNo || student.registrationNo || roll;
+            document.getElementById('cResult').textContent = status;
+            document.getElementById('cGrade').textContent = grade;
+            document.getElementById('cPercentage').textContent = perc;
+
+            if (student.photo) {
+                document.getElementById('cPhoto').src = student.photo;
+            }
+
+            // QR Code points to official verification URL
+            const qrVerifyUrl = encodeURIComponent(`${window.location.origin}/certificate?certNo=${encodeURIComponent(roll)}`);
+            document.getElementById('cQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${qrVerifyUrl}`;
+
+            // Update Marksheet button link
+            document.getElementById('lnkMarksheet').href = `/result?rollNo=${encodeURIComponent(roll)}`;
+        }
+
+        // On Page Load: ONLY search if query param is present; otherwise keep prompt card visible and document hidden
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const certNo = urlParams.get('certNo') || urlParams.get('rollNo') || urlParams.get('enrollNo') || urlParams.get('query');
+            if (certNo && certNo.trim()) {
+                document.getElementById('searchInput').value = certNo.trim();
+                const pInput = document.getElementById('promptSearchInput');
+                if (pInput) pInput.value = certNo.trim();
+                searchCertificate();
+            } else {
+                // Ensure canvas is hidden on direct empty visit
+                document.getElementById('emptyPromptCard').style.display = 'block';
+                document.getElementById('print').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

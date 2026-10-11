@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Center Location | Usha Institute Of Computer Education (ATC: IN/UP/MAU/29172)</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- Shared Site Header Mount -->
+    <div id="siteHeaderMount"></div>
+
+    <!-- 3. PAGE HERO HEADER -->
+    <section class="py-5" style="background: linear-gradient(135deg, #0C1533 0%, #14204B 100%); color: #ffffff;">
+        <div class="container text-center">
+            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-2">Helpdesk & Support</span>
+            <h2 class="fw-bold mb-2" style="font-family: 'Kanit', sans-serif; font-size: 38px;">Contact & Center Location</h2>
+            <p class="text-light opacity-75 mb-0 mx-auto" style="max-width: 650px;">
+                Reach out to our academic counselors for batch timings, new admissions, fee inquiries, or certificate verifications.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. CONTACT CARDS & FORM -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="data-card text-center h-100">
+                        <i class="fa-solid fa-location-dot text-warning fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2" style="color: var(--brand-navy);">Institute Address</h5>
+                        <p class="text-secondary small mb-0">
+                            Hanuman Mandir ke pass, Pahasa Bazar,<br>
+                            Mau, Uttar Pradesh 221705
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="data-card text-center h-100">
+                        <i class="fa-solid fa-phone text-success fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2" style="color: var(--brand-navy);">Call / WhatsApp</h5>
+                        <p class="text-secondary small mb-2">
+                            <strong>Helpline:</strong> +91 7275043143<br>
+                            <strong>Alternate:</strong> +91 7860479408
+                        </p>
+                        <a href="https://wa.me/917275043143?text=Hello%20Usha%20Institute,%20I%20have%20an%20inquiry" target="_blank" class="btn btn-sm btn-success fw-bold">
+                            <i class="fab fa-whatsapp me-1"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="data-card text-center h-100">
+                        <i class="fa-solid fa-envelope text-primary fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-2" style="color: var(--brand-navy);">Email & Social</h5>
+                        <p class="text-secondary small mb-2">
+                            info@thebrightfutures.com<br>
+                            ushainstitutepahasa@gmail.com
+                        </p>
+                        <a href="https://www.youtube.com/@usha.microsoft.tutorial" target="_blank" class="btn btn-sm btn-danger fw-bold">
+                            <i class="fab fa-youtube me-1"></i> YouTube Tutorials
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INQUIRY FORM -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="data-card">
+                        <h4 class="fw-bold mb-3" style="color: var(--brand-navy);"><i class="fa-solid fa-paper-plane text-warning me-2"></i>Send An Inquiry Message</h4>
+                        
+                        <div id="contactNoticeAlert" class="alert d-none py-2 px-3 small mb-3"></div>
+
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Student / Guardian Name *</label>
+                                    <input type="text" id="contactName" class="form-control" placeholder="Enter full name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Mobile Number *</label>
+                                    <input type="tel" id="contactMobile" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Interested Course</label>
+                                    <select id="contactCourse" class="form-select">
+                                        <option value="ADCA">1. ADCA (Advanced Diploma in Computer Applications)</option>
+                                        <option value="DCA">2. DCA (Diploma in Computer Applications)</option>
+                                        <option value="BCC">3. BCC (Basic Computer Course)</option>
+                                        <option value="Tally Prime">4. Tally Prime (Computerized Accounting)</option>
+                                        <option value="DCS">5. DCS (Diploma in Computer Science)</option>
+                                        <option value="General Inquiry">General Center Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Preferred Batch</label>
+                                    <select id="contactBatch" class="form-select">
+                                        <option value="Morning">Morning (08:00 AM - 11:00 AM)</option>
+                                        <option value="Noon">Afternoon (11:00 AM - 02:00 PM)</option>
+                                        <option value="Evening">Evening (03:00 PM - 06:00 PM)</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-secondary">Message / Questions</label>
+                                    <textarea id="contactMessage" class="form-control" rows="3" placeholder="Write your message here..."></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="submit" id="btnSubmitContact" class="btn btn-gold fw-bold px-4">
+                                        <i class="fa-solid fa-paper-plane me-1"></i> Send Inquiry
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Site Footer Mount -->
+    <div id="siteFooterMount"></div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value.trim();
+            const mobile = document.getElementById('contactMobile').value.trim();
+            const course = document.getElementById('contactCourse').value;
+            const msg = document.getElementById('contactMessage').value.trim();
+            const alertBox = document.getElementById('contactNoticeAlert');
+
+            alertBox.className = 'alert alert-success py-2 px-3 small mb-3';
+            alertBox.innerHTML = `<strong>Inquiry Received!</strong> Thank you <strong>${name}</strong>. Our counselor will contact you at <strong>${mobile}</strong> shortly regarding <strong>${course}</strong>.`;
+            alertBox.classList.remove('d-none');
+
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

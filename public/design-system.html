@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System & Tokens | Torchlight Editorial</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Torchlight Tokens CSS -->
+    <link rel="stylesheet" href="/css/torchlight-tokens.css">
+    <style>
+        .token-swatch {
+            height: 60px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
+</head>
+<body class="p-4 p-md-5">
+
+    <div class="container" style="max-width: var(--max-content-width);">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 ruled-ledger">
+            <div>
+                <h1 class="editorial-heading mb-1">Torchlight Editorial</h1>
+                <p class="text-muted mb-0">Official Design Tokens, Colors, Typography & Components Specification</p>
+            </div>
+            <div>
+                <a href="/admin" class="btn btn-torch-secondary btn-sm"><i class="fa-solid fa-arrow-left me-1"></i> Admin Console</a>
+            </div>
+        </div>
+
+        <!-- 1. COLOR TOKENS -->
+        <div class="bento-card mb-4">
+            <h3 class="mb-3">1. Brand Color Tokens</h3>
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-white" style="background: var(--color-navy-900);">#0B1230</div>
+                    <div class="small fw-bold mt-1">navy-900</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-white" style="background: var(--color-navy-700);">#14204B</div>
+                    <div class="small fw-bold mt-1">navy-700</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-dark" style="background: var(--color-gold-500);">#C9A45C</div>
+                    <div class="small fw-bold mt-1">gold-500</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-dark" style="background: var(--color-gold-600);">#B58F45</div>
+                    <div class="small fw-bold mt-1">gold-600 (Hover)</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-dark border" style="background: var(--color-ivory);">#FAF7F0</div>
+                    <div class="small fw-bold mt-1">ivory</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-dark border" style="background: var(--color-ice);">#F0F4F9</div>
+                    <div class="small fw-bold mt-1">ice</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-white" style="background: var(--color-slate-900);">#0F172A</div>
+                    <div class="small fw-bold mt-1">slate-900</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="token-swatch text-white" style="background: var(--color-slate-600);">#475569</div>
+                    <div class="small fw-bold mt-1">slate-600</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. SEMANTIC STATUS TOKENS -->
+        <div class="bento-card mb-4">
+            <h3 class="mb-3">2. Status & Badge Tokens</h3>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge-status badge-status-success"><i class="fa-solid fa-check"></i> Enrolled / Active</span>
+                <span class="badge-status badge-status-warning"><i class="fa-solid fa-clock"></i> Pending UPI Verification</span>
+                <span class="badge-status badge-status-danger"><i class="fa-solid fa-triangle-exclamation"></i> Overdue Payment</span>
+                <span class="badge-status badge-status-info"><i class="fa-solid fa-circle-info"></i> Official Record</span>
+            </div>
+        </div>
+
+        <!-- 3. BUTTONS -->
+        <div class="bento-card mb-4">
+            <h3 class="mb-3">3. Interactive Controls</h3>
+            <div class="d-flex flex-wrap gap-3 align-items-center">
+                <button class="btn btn-torch-primary"><i class="fa-solid fa-award"></i> Primary Gold Action</button>
+                <button class="btn btn-torch-secondary"><i class="fa-solid fa-shield"></i> Secondary Navy</button>
+                <button class="btn btn-torch-ghost"><i class="fa-solid fa-arrow-rotate-right"></i> Ghost Control</button>
+                <button class="lang-toggle-btn" onclick="UshaUI.toggleLanguage()" id="globalLangToggle">🌐 हिन्दी</button>
+            </div>
+        </div>
+
+        <!-- 4. TYPOGRAPHY & STAT NUMERALS -->
+        <div class="bento-card mb-4">
+            <h3 class="mb-3">4. Typography & Editorial Numerals</h3>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="stat-numeral">98.4%</div>
+                    <div class="text-muted small fw-bold text-uppercase mt-1">Board Pass Percentage</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-numeral">₹7,000</div>
+                    <div class="text-muted small fw-bold text-uppercase mt-1">Annual ADCA Fee</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-numeral">IN/UP/MAU</div>
+                    <div class="text-muted small fw-bold text-uppercase mt-1">Authorized ATC Code</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. TABLE & MONOSPACED REGISTER -->
+        <div class="bento-card mb-4">
+            <h3 class="mb-3">5. Data Grid & Sticky Header</h3>
+            <div class="table-responsive">
+                <table class="table-torch">
+                    <thead>
+                        <tr>
+                            <th>Receipt ID</th>
+                            <th>Student Name</th>
+                            <th>Course</th>
+                            <th>Fee Head</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cell-mono text-primary">RCP-2026-000104</td>
+                            <td class="fw-bold">Omkar Vishwakarma</td>
+                            <td>ADCA (12 Months)</td>
+                            <td>Monthly Installment</td>
+                            <td class="cell-mono fw-bold">₹500.00</td>
+                            <td><span class="badge-status badge-status-success">Reconciled</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-mono text-primary">RCP-2026-000105</td>
+                            <td class="fw-bold">Rahul Kumar</td>
+                            <td>ADCA (12 Months)</td>
+                            <td>Registration Fee</td>
+                            <td class="cell-mono fw-bold">₹300.00</td>
+                            <td><span class="badge-status badge-status-success">Reconciled</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS & Usha Components -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/usha-components.js"></script>
+</body>
+</html>

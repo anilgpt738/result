@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Admission & Registration Form | Usha Institute Of Computer Education</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        .apply-hero {
+            background: linear-gradient(135deg, rgba(17, 12, 45, 0.95), rgba(137, 12, 37, 0.85)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: #ffffff;
+            padding: 50px 0 40px 0;
+            text-align: center;
+        }
+        .form-section-title {
+            font-family: var(--font-head);
+            font-size: 24px;
+            color: var(--maroon);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-badge {
+            width: 28px;
+            height: 28px;
+            background: var(--maroon);
+            color: #ffffff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+        .course-card-option {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #ffffff;
+            position: relative;
+        }
+        .course-card-option:hover, .course-card-option.selected {
+            border-color: var(--maroon);
+            background: var(--lavender);
+        }
+        .course-card-option input[type="radio"] {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            accent-color: var(--maroon);
+        }
+        .preview-box {
+            width: 120px;
+            height: 140px;
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--lavender);
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Header Mount -->
+    <div id="siteHeaderMount"></div>
+
+    <!-- Hero Banner -->
+    <section class="apply-hero">
+        <div class="container">
+            <span class="badge" style="background: rgba(255,255,255,0.2); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 40px; margin-bottom: 12px; display: inline-block;">
+                ACADEMIC SESSION 2025–2026
+            </span>
+            <h1 style="font-family: var(--font-head); font-size: 42px; margin-bottom: 8px;" data-i18n="apply_hero_title">Online Student Admission & Registration</h1>
+            <p style="font-size: 16px; opacity: 0.9; max-width: 700px; margin: 0 auto;" data-i18n="apply_hero_sub">
+                Apply for recognized computer diplomas and vocational certificate courses. Complete the digital application to receive your official registration number.
+            </p>
+        </div>
+    </section>
+
+    <!-- Application Form Container -->
+    <div class="container my-5" style="max-width: 950px;">
+        <div class="card p-4 p-md-5" style="border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 4px 20px rgba(17, 12, 45, 0.05);">
+            
+            <form id="onlineAdmissionForm" onsubmit="submitAdmission(event)" enctype="multipart/form-data">
+                
+                <!-- 1. COURSE SELECTION -->
+                <div class="form-section-title">
+                    <span class="section-badge">1</span>
+                    <span>Select Enrolling Course & Batch</span>
+                </div>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="course-card-option selected" onclick="selectCourse(this, 'ADCA', 7000)">
+                            <input type="radio" name="courseRadio" value="ADCA" checked>
+                            <span class="badge bg-danger mb-2">12 Months</span>
+                            <h5 class="fw-bold mb-1 text-dark">ADCA</h5>
+                            <small class="text-muted d-block mb-2">Advance Diploma in Computer Applications</small>
+                            <strong class="text-dark">₹7,000</strong> <small class="text-muted">/ Year</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="course-card-option" onclick="selectCourse(this, 'DCA', 4000)">
+                            <input type="radio" name="courseRadio" value="DCA">
+                            <span class="badge bg-primary mb-2">6 Months</span>
+                            <h5 class="fw-bold mb-1 text-dark">DCA</h5>
+                            <small class="text-muted d-block mb-2">Diploma in Computer Applications</small>
+                            <strong class="text-dark">₹4,000</strong> <small class="text-muted">Total</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="course-card-option" onclick="selectCourse(this, 'BCC', 2500)">
+                            <input type="radio" name="courseRadio" value="BCC">
+                            <span class="badge bg-success mb-2">3 Months</span>
+                            <h5 class="fw-bold mb-1 text-dark">BCC</h5>
+                            <small class="text-muted d-block mb-2">Basic Computer Course</small>
+                            <strong class="text-dark">₹2,500</strong> <small class="text-muted">Total</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="course-card-option" onclick="selectCourse(this, 'TALLY', 4000)">
+                            <input type="radio" name="courseRadio" value="TALLY">
+                            <span class="badge bg-warning text-dark mb-2">4 Months</span>
+                            <h5 class="fw-bold mb-1 text-dark">Tally Prime</h5>
+                            <small class="text-muted d-block mb-2">Accounting & GST Taxation</small>
+                            <strong class="text-dark">₹4,000</strong> <small class="text-muted">Total</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Preferred Training Batch *</label>
+                        <select id="batchSelect" class="form-select" required>
+                            <option value="Morning Batch (08:00 AM - 10:00 AM)">Morning Batch (08:00 AM - 10:00 AM)</option>
+                            <option value="Mid-Morning Batch (10:00 AM - 12:00 PM)">Mid-Morning Batch (10:00 AM - 12:00 PM)</option>
+                            <option value="Afternoon Batch (01:00 PM - 03:00 PM)">Afternoon Batch (01:00 PM - 03:00 PM)</option>
+                            <option value="Evening Batch (03:00 PM - 05:00 PM)">Evening Batch (03:00 PM - 05:00 PM)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Session</label>
+                        <input type="text" id="sessionInput" class="form-control" value="2025-2026" readonly>
+                    </div>
+                </div>
+
+                <!-- 2. PERSONAL DETAILS -->
+                <div class="form-section-title">
+                    <span class="section-badge">2</span>
+                    <span>Applicant Personal Information</span>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Applicant Full Name (As per 10th Certificate) *</label>
+                        <input type="text" id="applicantName" class="form-control" required placeholder="e.g. AMIT KUMAR">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Father's Name *</label>
+                        <input type="text" id="fatherName" class="form-control" required placeholder="e.g. SURESH CHANDRA">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Mother's Name</label>
+                        <input type="text" id="motherName" class="form-control" placeholder="e.g. SUNITA DEVI">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold small">Date of Birth *</label>
+                        <input type="date" id="dob" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold small">Gender *</label>
+                        <select id="gender" class="form-select" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">Category *</label>
+                        <select id="category" class="form-select" required>
+                            <option value="General">General</option>
+                            <option value="OBC">OBC</option>
+                            <option value="SC">SC</option>
+                            <option value="ST">ST</option>
+                            <option value="EWS">EWS</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">Mobile Number (For Login & OTP) *</label>
+                        <input type="tel" id="mobile" class="form-control" required pattern="\d{10}" maxlength="10" placeholder="10-digit mobile number">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">Email ID</label>
+                        <input type="email" id="email" class="form-control" placeholder="e.g. student@gmail.com">
+                    </div>
+                </div>
+
+                <!-- 3. ADDRESS & IDENTIFICATION -->
+                <div class="form-section-title">
+                    <span class="section-badge">3</span>
+                    <span>Address & Identification</span>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold small">Permanent Address *</label>
+                        <input type="text" id="address" class="form-control" required placeholder="Village / Ward, Post Office, Police Station">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">District *</label>
+                        <input type="text" id="district" class="form-control" value="Mau" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">State *</label>
+                        <input type="text" id="state" class="form-control" value="Uttar Pradesh" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold small">PIN Code *</label>
+                        <input type="text" id="pincode" class="form-control" value="221705" required maxlength="6">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Aadhaar Card (Last 4 Digits Only) *</label>
+                        <input type="text" id="aadhaarNum" class="form-control" maxlength="4" pattern="\d{4}" required placeholder="e.g. 5432">
+                        <small class="text-muted" style="font-size: 11px;">DPDP Privacy: We never store your full 12-digit Aadhaar number.</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">APAAR / ABC ID (Optional)</label>
+                        <input type="text" id="apaarId" class="form-control" placeholder="12-digit APAAR ID if available">
+                    </div>
+                </div>
+
+                <!-- 4. UPLOADS -->
+                <div class="form-section-title">
+                    <span class="section-badge">4</span>
+                    <span>Photograph & Signature</span>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Passport Size Photograph *</label>
+                        <input type="file" id="photoUpload" class="form-control" accept="image/*" required onchange="previewImage(this, 'photoPreview')">
+                        <div class="preview-box mt-2" id="photoPreview">
+                            <span class="text-muted small">No photo</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small">Candidate Signature *</label>
+                        <input type="file" id="sigUpload" class="form-control" accept="image/*" required onchange="previewImage(this, 'sigPreview')">
+                        <div class="preview-box mt-2" id="sigPreview">
+                            <span class="text-muted small">No signature</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Declaration -->
+                <div class="p-3 mb-4 rounded" style="background: var(--lavender); border: 1px solid var(--border);">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="declarationCheck" required>
+                        <label class="form-check-label small text-dark" for="declarationCheck">
+                            I hereby declare that all information furnished above is authentic and true to the best of my knowledge. I agree to abide by the rules, academic attendance regulations (minimum 75%), and code of conduct of <strong>Usha Institute Of Computer Education</strong>.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Alert Box -->
+                <div id="applyAlert" class="alert d-none mb-3 py-3 px-4"></div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" id="btnSubmitApply" class="btn btn-primary btn-pill btn-lg px-5">
+                        <i class="fa-solid fa-paper-plane me-2"></i> Submit Online Application
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Shared Footer Mount -->
+    <div id="siteFooterMount"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        let selectedCourseCode = 'ADCA';
+        let selectedCourseFee = 7000;
+
+        function selectCourse(card, code, fee) {
+            document.querySelectorAll('.course-card-option').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            const radio = card.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+            selectedCourseCode = code;
+            selectedCourseFee = fee;
+        }
+
+        function previewImage(input, targetId) {
+            const container = document.getElementById(targetId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    container.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        async function submitAdmission(e) {
+            e.preventDefault();
+
+            const alertBox = document.getElementById('applyAlert');
+            const btn = document.getElementById('btnSubmitApply');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Processing Application...';
+            alertBox.classList.add('d-none');
+
+            const formData = new FormData();
+            formData.append('course', selectedCourseCode);
+            formData.append('batch', document.getElementById('batchSelect').value);
+            formData.append('session', document.getElementById('sessionInput').value);
+            formData.append('name', document.getElementById('applicantName').value.trim());
+            formData.append('fatherName', document.getElementById('fatherName').value.trim());
+            formData.append('motherName', document.getElementById('motherName').value.trim());
+            formData.append('dob', document.getElementById('dob').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('category', document.getElementById('category').value);
+            formData.append('mobile', document.getElementById('mobile').value.trim());
+            formData.append('email', document.getElementById('email').value.trim());
+            formData.append('address', document.getElementById('address').value.trim());
+            formData.append('district', document.getElementById('district').value.trim());
+            formData.append('state', document.getElementById('state').value.trim());
+            formData.append('pincode', document.getElementById('pincode').value.trim());
+            formData.append('aadhaarNum', document.getElementById('aadhaarNum').value.trim());
+            formData.append('apaarId', document.getElementById('apaarId').value.trim());
+
+            const photo = document.getElementById('photoUpload').files[0];
+            const sig = document.getElementById('sigUpload').files[0];
+            if (photo) formData.append('photo', photo);
+            if (sig) formData.append('signature', sig);
+
+            try {
+                const res = await fetch('/api/admissions/apply', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    alertBox.className = 'alert alert-success py-4';
+                    alertBox.innerHTML = `
+                        <h4 class="fw-bold mb-2"><i class="fa-solid fa-circle-check me-2"></i> Application Submitted Successfully!</h4>
+                        <p class="mb-2">Your Application Number is: <strong class="fs-5">${data.appNo}</strong></p>
+                        <p class="mb-3 text-muted">Course: <strong>${selectedCourseCode}</strong> | Total Fee: <strong>₹${selectedCourseFee}</strong></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="/payment?appNo=${encodeURIComponent(data.appNo)}" class="btn btn-primary btn-pill btn-sm">
+                                <i class="fa-solid fa-credit-card me-1"></i> Proceed to Pay Fee Online
+                            </a>
+                            <a href="/student-login" class="btn btn-outline-dark btn-pill btn-sm">
+                                <i class="fa-solid fa-right-to-bracket me-1"></i> Student Portal Login
+                            </a>
+                        </div>
+                    `;
+                    alertBox.classList.remove('d-none');
+                    document.getElementById('onlineAdmissionForm').reset();
+                    window.scrollTo({ top: alertBox.offsetTop - 100, behavior: 'smooth' });
+                } else {
+                    alertBox.className = 'alert alert-danger py-3';
+                    alertBox.textContent = data.message || 'Submission error. Please check your information.';
+                    alertBox.classList.remove('d-none');
+                }
+            } catch (err) {
+                console.error(err);
+                alertBox.className = 'alert alert-danger py-3';
+                alertBox.textContent = 'Server connection error during form submission.';
+                alertBox.classList.remove('d-none');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Submit Online Application';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Self-Service Portal | Usha Institute Of Computer Education</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        .profile-banner {
+            background: linear-gradient(135deg, var(--ink) 0%, var(--dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(17, 12, 45, 0.15);
+            border-left: 6px solid var(--maroon);
+        }
+        .avatar-box {
+            width: 110px;
+            height: 125px;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+            object-fit: cover;
+            background: #fff;
+        }
+        .dash-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 22px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(17, 12, 45, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .section-box {
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(17, 12, 45, 0.05);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Header Mount -->
+    <div id="siteHeaderMount"></div>
+
+    <div class="container my-5">
+        
+        <!-- PROFILE BANNER -->
+        <div class="profile-banner mb-4">
+            <div class="row align-items-center g-3">
+                <div class="col-auto">
+                    <img id="dispPhoto" src="/assets/images/default-student.jpeg" onerror="this.src='https://center.pmkvyedu.com/upload/users/19371787653366.jpeg'" class="avatar-box" alt="Student Photo">
+                </div>
+                <div class="col">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                        <h2 class="fw-bold mb-0" id="dispName" style="font-family: var(--font-head); letter-spacing: 0.5px;">Loading Student Profile...</h2>
+                        <span class="badge" id="dispStatus" style="background: var(--maroon); color: #fff; padding: 6px 12px; border-radius: 20px;">ENROLLED</span>
+                    </div>
+                    <p class="text-light mb-2 small opacity-90" id="dispCourseAndSession">Course: --- | Session: ---</p>
+                    <div class="d-flex flex-wrap gap-3 small text-secondary">
+                        <span class="text-light"><i class="fa-solid fa-id-card me-1" style="color: #c9a45c;"></i> <strong>Roll No:</strong> <span id="dispRollNo">---</span></span>
+                        <span class="text-light"><i class="fa-solid fa-hashtag me-1" style="color: #c9a45c;"></i> <strong>Enrollment:</strong> <span id="dispEnrollNo">---</span></span>
+                        <span class="text-light"><i class="fa-solid fa-phone me-1" style="color: #c9a45c;"></i> <strong>Mobile:</strong> <span id="dispMobile">---</span></span>
+                    </div>
+                </div>
+                <div class="col-auto ms-auto">
+                    <button class="btn btn-outline-light btn-pill btn-sm" onclick="logoutStudent()">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 ACTION & KPI CARDS -->
+        <div class="row g-3 mb-4">
+            
+            <!-- 1. FEE CARD -->
+            <div class="col-md-3">
+                <div class="dash-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small fw-bold text-uppercase">Fee Ledger</span>
+                            <i class="fa-solid fa-wallet fs-4" style="color: var(--maroon);"></i>
+                        </div>
+                        <h4 class="fw-bold mb-1 text-dark" id="kpiFeePaid">₹0</h4>
+                        <p class="small text-danger mb-3" id="kpiFeePending">Pending: ₹0</p>
+                    </div>
+                    <a id="lnkPayFee" href="/payment" class="btn btn-primary btn-pill btn-sm w-100">
+                        <i class="fa-solid fa-credit-card me-1"></i> Pay Next Installment
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. ATTENDANCE & EXAM ELIGIBILITY (75% RULE) -->
+            <div class="col-md-3">
+                <div class="dash-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small fw-bold text-uppercase">Class Attendance</span>
+                            <i class="fa-solid fa-clipboard-user fs-4 text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-1 text-dark" id="kpiAttendancePerc">87.5%</h4>
+                        <p class="small mb-3" id="kpiAttendanceBadge">
+                            <span class="badge bg-success">75% MINIMUM MET (ELIGIBLE)</span>
+                        </p>
+                    </div>
+                    <div class="small text-muted text-center" id="kpiAttendanceDetail">21 / 24 Sessions Attended</div>
+                </div>
+            </div>
+
+            <!-- 3. ADMIT CARD -->
+            <div class="col-md-3">
+                <div class="dash-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small fw-bold text-uppercase">Examination Ticket</span>
+                            <i class="fa-solid fa-ticket fs-4 text-info"></i>
+                        </div>
+                        <h4 class="fw-bold mb-1 text-dark">Admit Card</h4>
+                        <p class="small text-muted mb-3" id="kpiExamCycle">Session 2025–2026</p>
+                    </div>
+                    <a id="lnkAdmitCard" href="/admit-card" class="btn btn-outline-dark btn-pill btn-sm w-100">
+                        <i class="fa-solid fa-download me-1"></i> Download Admit Card
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. RESULT & OFFICIAL CERTIFICATE -->
+            <div class="col-md-3">
+                <div class="dash-card">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small fw-bold text-uppercase">Credential Status</span>
+                            <i class="fa-solid fa-award fs-4 text-warning"></i>
+                        </div>
+                        <h4 class="fw-bold mb-1 text-dark" id="kpiResultStatus">Available</h4>
+                        <p class="small text-muted mb-3" id="kpiPercentage">Grade: ---</p>
+                    </div>
+                    <div class="d-grid gap-1">
+                        <a id="lnkResult" href="/result" class="btn btn-outline-primary btn-pill btn-sm">
+                            <i class="fa-solid fa-file-lines me-1"></i> Statement of Marks
+                        </a>
+                        <a id="lnkCertificate" href="/certificate" class="btn btn-outline-dark btn-pill btn-sm">
+                            <i class="fa-solid fa-certificate me-1"></i> Certificate
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DETAILS TABS / SECTIONS -->
+        <div class="row g-4">
+            
+            <!-- LEFT: PERSONAL & ACADEMIC DETAILS -->
+            <div class="col-lg-8">
+                <div class="section-box">
+                    <h5 class="fw-bold mb-3 border-bottom pb-2" style="font-family: var(--font-head); color: var(--maroon);">
+                        <i class="fa-solid fa-user me-2"></i>Personal & Academic Registration Record
+                    </h5>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle small mb-0">
+                            <tbody>
+                                <tr>
+                                    <th width="30%" class="bg-light">Student Name</th>
+                                    <td id="detName" class="fw-bold text-dark">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Father's Name</th>
+                                    <td id="detFather">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Mother's Name</th>
+                                    <td id="detMother">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Date of Birth</th>
+                                    <td id="detDob">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Enrolled Course</th>
+                                    <td id="detCourse" class="fw-bold" style="color: var(--maroon);">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Academic Session</th>
+                                    <td id="detSession">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Address & Location</th>
+                                    <td id="detLocation">---</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Authorised Training Center</th>
+                                    <td>Usha Institute Of Computer Education (ATC: IN/UP/MAU/29172)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- RECENT TRANSACTIONS / RECEIPTS -->
+                <div class="section-box">
+                    <h5 class="fw-bold mb-3 border-bottom pb-2" style="font-family: var(--font-head); color: var(--maroon);">
+                        <i class="fa-solid fa-clock-rotate-left me-2"></i>Fee Payment Transactions & Official Receipts
+                    </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover small align-middle mb-0" id="paymentHistoryTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Receipt No</th>
+                                    <th>Purpose</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentHistoryBody">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-3">Loading transaction history...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: NOTICES & HELPLINE -->
+            <div class="col-lg-4">
+                
+                <!-- NOTICES CARD -->
+                <div class="section-box mb-4">
+                    <h5 class="fw-bold mb-3 border-bottom pb-2" style="font-family: var(--font-head); color: var(--maroon);">
+                        <i class="fa-solid fa-bullhorn me-2"></i>Campus Announcements
+                    </h5>
+                    <div class="p-3 mb-2 rounded" style="background: var(--lavender); border-left: 4px solid var(--maroon);">
+                        <strong class="d-block mb-1 text-dark" style="font-size: 13px;">75% Attendance Requirement</strong>
+                        <p class="small text-muted mb-0">Students must maintain at least 75% attendance in theory and lab sessions to be eligible for the semester examination.</p>
+                    </div>
+                    <div class="p-3 rounded" style="background: var(--lavender); border-left: 4px solid #c9a45c;">
+                        <strong class="d-block mb-1 text-dark" style="font-size: 13px;">Digital Document Verification</strong>
+                        <p class="small text-muted mb-0">All marksheets and certificates carry an authenticated QR code linked to the central institutional register.</p>
+                    </div>
+                </div>
+
+                <!-- HELPLINE CARD -->
+                <div class="section-box">
+                    <h5 class="fw-bold mb-3 border-bottom pb-2" style="font-family: var(--font-head); color: var(--maroon);">
+                        <i class="fa-solid fa-headset me-2"></i>Administration Helpdesk
+                    </h5>
+                    <p class="small text-muted mb-3">For any academic questions, fee receipt duplicates, or batch transfers:</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-2"><i class="fa-solid fa-phone me-2" style="color: var(--maroon);"></i>+91-7275043143</li>
+                        <li class="mb-2"><i class="fa-solid fa-envelope me-2" style="color: var(--maroon);"></i>ushainstitutepahasa@gmail.com</li>
+                        <li><i class="fa-solid fa-location-dot me-2" style="color: var(--maroon);"></i>Hanuman Mandir ke pass, Pahasa Bazar, Mau, Uttar Pradesh 221705</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Shared Footer Mount -->
+    <div id="siteFooterMount"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        function checkAuth() {
+            const stored = sessionStorage.getItem('loggedInStudent');
+            if (!stored) {
+                window.location.href = '/student-login';
+                return null;
+            }
+            try {
+                return JSON.parse(stored);
+            } catch(e) {
+                window.location.href = '/student-login';
+                return null;
+            }
+        }
+
+        function logoutStudent() {
+            sessionStorage.removeItem('loggedInStudent');
+            localStorage.removeItem('studentAuthToken');
+            window.location.href = '/student-login';
+        }
+
+        async function initDashboard() {
+            const student = checkAuth();
+            if (!student) return;
+
+            // Header & Banner
+            document.getElementById('dispName').textContent = student.name;
+            if (student.photo) {
+                document.getElementById('dispPhoto').src = student.photo;
+            }
+            document.getElementById('dispCourseAndSession').textContent = `Course: ${student.course || 'ADCA'} | Session: ${student.session || '2025-2026'}`;
+            document.getElementById('dispRollNo').textContent = student.rollNo || student.appNo || '---';
+            document.getElementById('dispEnrollNo').textContent = student.enrollmentNo || student.registrationNo || student.appNo || '---';
+            document.getElementById('dispMobile').textContent = student.mobile || '-';
+
+            // Personal Profile Table
+            document.getElementById('detName').textContent = student.name;
+            document.getElementById('detFather').textContent = student.fatherName || '-';
+            document.getElementById('detMother').textContent = student.motherName || '-';
+            document.getElementById('detDob').textContent = student.dob || '-';
+            document.getElementById('detCourse').textContent = student.course || '-';
+            document.getElementById('detSession').textContent = student.session || '2025-2026';
+            document.getElementById('detLocation').textContent = `${student.district || 'Mau'}, ${student.state || 'Uttar Pradesh'}`;
+
+            const searchKey = student.enrollmentNo || student.rollNo || student.registrationNo || student.appNo;
+            document.getElementById('lnkPayFee').href = `/payment?enrollNo=${encodeURIComponent(searchKey)}`;
+            document.getElementById('lnkAdmitCard').href = `/admit-card?rollNo=${encodeURIComponent(searchKey)}`;
+            document.getElementById('lnkResult').href = `/result?rollNo=${encodeURIComponent(searchKey)}`;
+            document.getElementById('lnkCertificate').href = `/certificate?certNo=${encodeURIComponent(searchKey)}`;
+
+            // Live Fee Ledger from /api/payments/student/:id
+            try {
+                const res = await fetch(`/api/payments/student/${encodeURIComponent(searchKey)}`);
+                const data = await res.json();
+                if (data.success && data.data) {
+                    const st = data.data.student;
+                    document.getElementById('kpiFeePaid').textContent = `₹${st.paidAmount || 0}`;
+                    document.getElementById('kpiFeePending').textContent = `Pending: ₹${st.pendingAmount !== undefined ? st.pendingAmount : (st.totalFee - (st.paidAmount || 0))}`;
+
+                    const receipts = data.data.receipts || [];
+                    const tbody = document.getElementById('paymentHistoryBody');
+                    if (receipts.length > 0) {
+                        tbody.innerHTML = '';
+                        receipts.forEach(r => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td class="fw-bold" style="color: var(--maroon);">${r.receiptNo}</td>
+                                <td>${(r.feeHead || 'Tuition').replace('_', ' ').toUpperCase()}</td>
+                                <td class="fw-bold text-success">₹${r.amount}</td>
+                                <td>${(r.method || 'UPI').toUpperCase()}</td>
+                                <td><span class="badge bg-success">PAID</span></td>
+                                <td class="text-muted small">${new Date(r.paidAt).toLocaleDateString('en-IN')}</td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                    } else {
+                        tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">No payment records found yet.</td></tr>`;
+                    }
+                }
+            } catch (err) {
+                console.error('Fee fetch error:', err);
+            }
+
+            // Live Attendance & 75% Eligibility from /api/batches/attendance/student/:id
+            if (student._id) {
+                try {
+                    const attRes = await fetch(`/api/batches/attendance/student/${student._id}`);
+                    const attData = await attRes.json();
+                    if (attData.success && attData.data) {
+                        const att = attData.data;
+                        document.getElementById('kpiAttendancePerc').textContent = `${att.percentage}%`;
+                        document.getElementById('kpiAttendanceDetail').textContent = `${att.attendedSessions} / ${att.totalSessions} Sessions Attended`;
+                        if (att.isEligible) {
+                            document.getElementById('kpiAttendanceBadge').innerHTML = `<span class="badge bg-success">75% MINIMUM MET (ELIGIBLE)</span>`;
+                        } else {
+                            document.getElementById('kpiAttendanceBadge').innerHTML = `<span class="badge bg-danger">BELOW 75% (SHORTAGE)</span>`;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Attendance fetch error:', e);
+                }
+            }
+
+            // Live Result & Certificate
+            try {
+                const res = await fetch(`/api/students/certificate/${encodeURIComponent(searchKey)}`);
+                const data = await res.json();
+                if (data.success && data.result) {
+                    const r = data.result;
+                    document.getElementById('kpiResultStatus').textContent = r.result || 'Pass';
+                    document.getElementById('kpiPercentage').textContent = `Marks: ${r.totalMarks}/${r.totalMaxMarks} (${r.percentage}%) - Grade ${r.overallGrade}`;
+                }
+            } catch (err) {
+                console.error('Result fetch error:', err);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admit Card - {{STUDENT_NAME}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+    </style>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Lora", serif;
+            background: #e9edf2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ============ MAIN CARD (USING YOUR BACKGROUND IMAGE) ============ */
+        .admit-card {
+            width: 850px;
+            background-image: url("https://i.ibb.co/vC2Q83c6/Untitled.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            /* This padding pushes content INSIDE the decorative border */
+            padding: 55px 60px 45px 60px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+            min-height: 1100px;
+        }
+
+        /* Logo Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .watermark img { width: 420px; height: 420px; object-fit: contain; }
+
+        /* Content Wrapper */
+        .content-layer { position: relative; z-index: 1; }
+
+        /* ============ HEADER ============ */
+        .admit-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #29426b;
+            margin-bottom: 12px;
+        }
+
+        .header-logo {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            border: 2px solid #29426b;
+            object-fit: cover;
+            background: #fff;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .header-text { flex: 1; text-align: center; }
+
+        .header-text h1 {
+            font-family: "Oswald", sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #29426b;
+            margin-bottom: 2px;
+        }
+
+        .header-text h2 {
+            font-family: "Oswald", sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #c88a00;
+            margin-bottom: 3px;
+        }
+
+        .header-text p {
+            font-size: 9.5px;
+            color: #333;
+            line-height: 1.35;
+        }
+
+        /* ============ TITLE BAR ============ */
+        .admit-title {
+            text-align: center;
+            padding: 6px;
+            font-family: "Oswald", sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #f0a500;
+            text-transform: uppercase;
+            background: #29426b;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        /* ============ EXAM INFO BAR ============ */
+        .exam-info-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 12px;
+            border: 1px solid #29426b;
+            background: rgba(255, 255, 255, 0.88);
+            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #29426b;
+            border-radius: 4px;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .main-content {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .left-section { display: flex; gap: 8px; flex-shrink: 0; }
+
+        .photo-box {
+            width: 100px; height: 120px;
+            border: 2px solid #29426b;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .qr-box {
+            width: 100px; height: 120px;
+            border: 2px solid #29426b;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+
+        .right-section { flex: 1; }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .details-table td {
+            padding: 5px 8px;
+            border: 1px solid #29426b;
+            vertical-align: middle;
+        }
+
+        .details-table .label {
+            background: rgba(244, 247, 251, 0.95);
+            font-weight: 700;
+            color: #29426b;
+            width: 120px;
+            font-family: "Kanit", sans-serif;
+        }
+
+        .details-table .value { font-weight: 600; color: #1a1a1a; }
+
+        /* ============ EXAM SCHEDULE ============ */
+        .schedule-section { margin-bottom: 12px; }
+
+        .section-title {
+            font-family: "Oswald", sans-serif;
+            font-size: 14px;
+            color: #29426b;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #c88a00;
+            padding-bottom: 3px;
+            display: inline-block;
+        }
+
+        .single-day-banner {
+            background: rgba(41, 66, 107, 0.92);
+            border: 1px solid #29426b;
+            border-radius: 4px;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            font-family: "Kanit", sans-serif;
+        }
+        .single-day-banner span strong { color: #f0a500; }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .subject-card {
+            border: 1px solid #29426b;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .subject-card .marks { font-size: 10px; color: #555; font-weight: 400; }
+
+        .total-marks {
+            grid-column: span 2;
+            background: rgba(244, 247, 251, 0.95);
+            border: 1px solid #29426b;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #29426b;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ============ INSTRUCTIONS ============ */
+        .instructions { margin-bottom: 15px; }
+
+        .instructions ol {
+            padding-left: 18px;
+            font-size: 10px;
+            line-height: 1.5;
+            color: #222;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 8px 8px 8px 28px;
+            border-radius: 4px;
+        }
+
+        .instructions ol li { margin-bottom: 2px; }
+        .instructions ol li strong { color: #29426b; }
+
+        /* ============ SIGNATURE SECTION ============ */
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 12px 30px 15px 30px;
+            gap: 20px;
+            border-top: 1px dashed #29426b;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 4px;
+        }
+
+        .signature-box { text-align: center; width: 150px; flex-shrink: 0; }
+
+        .signature-box .sign-line {
+            border-top: 2px solid #29426b;
+            padding-top: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #29426b;
+            font-family: "Kanit", sans-serif;
+            margin-top: 5px;
+        }
+
+        .signature-box img { height: 35px; object-fit: contain; margin-bottom: -5px; }
+
+        /* ============ FOOTER ============ */
+        .admit-footer {
+            background: rgba(41, 66, 107, 0.92);
+            color: #ffffff;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9.5px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .admit-footer .footer-left { line-height: 1.5; }
+        .admit-footer .footer-right { text-align: right; line-height: 1.5; }
+        .admit-footer strong { color: #f0a500; }
+
+        /* ============ PRINT ============ */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .admit-card {
+                box-shadow: none;
+                width: 100%;
+                padding: 55px 60px 45px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admit-card">
+        <!-- Logo Watermark -->
+        <div class="watermark">
+            <img src="https://center.pmkvyedu.com/upload/logo/1787653813.png" alt="Watermark">
+        </div>
+
+        <div class="content-layer">
+
+            <!-- Header -->
+            <div class="admit-header">
+                <img src="https://center.pmkvyedu.com/upload/logo/1787653813.png"
+                     alt="Institute Logo" class="header-logo">
+                <div class="header-text">
+                    <h1>Usha Institute Of Computer Education</h1>
+                    <h2>Affiliated to The Bright Futures Vocational Division</h2>
+                    <p>
+                        Hanuman Mandir ke pass, Pahasa Bazar, Mau, Uttar Pradesh 221705<br>
+                        Website: www.thebrightfutures.com | Center Code: IN/UP/MAU/29172
+                    </p>
+                </div>
+            </div>
+
+            <!-- Title Bar -->
+            <div class="admit-title">Admit Card / Examination Hall Ticket</div>
+
+            <!-- Exam Info Bar -->
+            <div class="exam-info-bar">
+                <span><strong>Admit Card No:</strong> TBF/ADCA/2024/ADM-31158</span>
+                <span><strong>Exam Session:</strong> 2023-2024</span>
+                <span><strong>Date of Issue:</strong> 19 Jul 2024</span>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="left-section">
+                    <div class="photo-box">
+                        <img src="https://center.pmkvyedu.com/upload/users/19371787653366.jpeg" alt="Student Photo">
+                    </div>
+                    <div class="qr-box">
+                        <img src="https://center.pmkvyedu.com/upload/certificate/202536924646-221871866204532.png" alt="QR Code">
+                    </div>
+                </div>
+
+                <div class="right-section">
+                    <table class="details-table">
+                        <tr>
+                            <td class="label">Roll Number</td>
+                            <td class="value">TBF/ADCA/2024/31158</td>
+                            <td class="label">Enrollment No.</td>
+                            <td class="value">{{ENROLLMENT_NO}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Candidate Name</td>
+                            <td class="value" colspan="3">
+                                <strong style="font-size:13px; color:#29426b;">OMKAR VISHWAKARMA</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Father's Name</td>
+                            <td class="value" colspan="3">RAMESH VISHWAKARMA</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Course Name</td>
+                            <td class="value" colspan="3">
+                                <strong>Advance Diploma in Computer Application (ADCA)</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Course Duration</td>
+                            <td class="value">12 Months</td>
+                            <td class="label">Mode</td>
+                            <td class="value">Regular</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Session</td>
+                            <td class="value">{{SESSION}}</td>
+                            <td class="label">Exam Center</td>
+                            <td class="value">IN/UP/MAU/29172</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exam Schedule -->
+            <div class="schedule-section">
+                <div class="section-title">📅 Examination Schedule</div>
+
+                <div class="single-day-banner">
+                    <span><strong>Exam Date:</strong> 01 August 2024 (Thursday)</span>
+                    <span><strong>Reporting Time:</strong> 09:30 AM</span>
+                    <span><strong>Exam Time:</strong> 10:00 AM – 01:00 PM</span>
+                </div>
+
+                <div class="subject-grid">
+                    <div class="subject-card">1. Computer Fundamentals &amp; IT <span class="marks">(100)</span></div>
+                    <div class="subject-card">2. MS Office &amp; Office Automation <span class="marks">(100)</span></div>
+                    <div class="subject-card">3. MS Excel &amp; Advanced Excel <span class="marks">(100)</span></div>
+                    <div class="subject-card">4. Internet &amp; Web Technology <span class="marks">(100)</span></div>
+                    <div class="subject-card">5. DBMS <span class="marks">(100)</span></div>
+                    <div class="subject-card">6. Computer Networking <span class="marks">(100)</span></div>
+                    <div class="subject-card">7. Tally &amp; Accounting <span class="marks">(100)</span></div>
+                    <div class="subject-card">8. C Programming &amp; Project Work <span class="marks">(100)</span></div>
+
+                    <div class="total-marks">
+                        <span>Grand Total: 800</span>
+                        <span>Duration: 3 Hours (Combined)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <div class="section-title">⚠️ Instructions for Candidates</div>
+                <ol>
+                    <li><strong>Reporting Time:</strong> Candidates must report to the examination center at least <strong>30 minutes</strong> before the commencement of the examination.</li>
+                    <li><strong>Admit Card:</strong> This admit card must be carried to the examination hall. Without it, entry will be strictly prohibited.</li>
+                    <li><strong>ID Proof:</strong> Candidates must bring a valid photo ID proof (Aadhar / PAN / School ID) along with this admit card.</li>
+                    <li><strong>Prohibited Items:</strong> Mobile phones, calculators, smart watches, or any electronic gadgets are <strong>strictly not allowed</strong>.</li>
+                    <li><strong>Stationery:</strong> Candidates must bring their own blue/black ballpoint pen, pencil, eraser, and other necessary items.</li>
+                    <li><strong>Seating:</strong> Candidates must occupy their allotted seats as per the seating arrangement displayed at the center.</li>
+                    <li><strong>No Re-entry:</strong> Candidates will not be allowed to leave the examination hall before the completion of the examination.</li>
+                    <li><strong>Malpractice:</strong> Any candidate found using unfair means will be disqualified from the examination.</li>
+                </ol>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="signature-section">
+                <div class="signature-box">
+                    <div class="sign-line">Candidate's Signature</div>
+                </div>
+                <div class="signature-box">
+                    <div class="sign-line">Invigilator's Signature</div>
+                </div>
+                <div class="signature-box">
+                    <img src="https://center.pmkvyedu.com/upload/semester_certificate/signature.png" alt="Signature">
+                    <div class="sign-line">Controller of Examination</div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="admit-footer">
+                <div class="footer-left">
+                    <strong>Helpline:</strong> +91-XXXXXXXXXX &nbsp;|&nbsp;
+                    <strong>Email:</strong> support@thebrightfutures.com
+                </div>
+                <div class="footer-right">
+                    <strong>Note:</strong> This is a computer-generated admit card.<br>
+                    No signature is required for validity.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

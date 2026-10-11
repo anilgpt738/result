@@ -1,0 +1,61 @@
+# ================================================================
+# USHA INSTITUTE MANAGEMENT SYSTEM - GIT IGNORE
+# ================================================================
+
+# Dependencies
+node_modules/
+package-lock.json.backup*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables & Secrets (NEVER COMMIT)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+!.env.example
+
+# Database Backups, Dumps & Migration Snapshots
+backups/*
+!backups/.gitkeep
+*.dump
+*.tar
+*.tar.gz
+*.gz
+*.sql
+*.sqlite
+*.sqlite3
+
+# Server & Runtime Logs
+logs/
+*.log
+
+# IDE, OS & System Metadata
+.system_generated/
+.gemini/
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# Visual Regression Test Output & Temporary Screenshots
+tests/screens/
+
+# Dynamic Uploaded Student Media (Retain official institute logo and directories)
+public/uploads/*
+!public/uploads/logo.png
+!public/uploads/proofs/
+public/uploads/proofs/*
+!public/uploads/proofs/.gitkeep
+backups/
